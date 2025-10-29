@@ -1,0 +1,6 @@
+---
+- name: Safe patching across Linux hosts
+  hosts: all
+  become: true
+  roles:
+    - role: common

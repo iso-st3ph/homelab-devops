@@ -1,0 +1,22 @@
+---
+- name: Ensure package cache is up to date (Debian/Ubuntu)
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Upgrade packages to {{ package_state }} (Debian/Ubuntu)
+  apt:
+    upgrade: dist
+    state: "{{ package_state }}"
+  when: ansible_os_family == "Debian"
+
+- name: Ensure dnf cache is up to date (RHEL/Fedora)
+  dnf:
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Upgrade packages to {{ package_state }} (RHEL/Fedora)
+  dnf:
+    name: "*"
+    state: "{{ package_state }}"
+  when: ansible_os_family == "RedHat"

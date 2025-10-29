@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  echo:
+    image: ealen/echo-server:latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped
