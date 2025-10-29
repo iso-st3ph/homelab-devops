@@ -1,19 +1,30 @@
 # homelab-devops
+_A practical DevOps portfolio built from a real homelab environment._
 
-_A practical DevOps portfolio_: Ansible automation, Terraform on AWS, and containerized services.  
-**Tech:** Linux, Ansible, Terraform, Docker, GitHub Actions, AWS.
+![CI](https://github.com/iso-st3ph/homelab-devops/actions/workflows/ci.yml/badge.svg)
 
-## Structure
+This repository showcases **automation and infrastructure management** for my personal homelab.  
+It demonstrates real-world experience using **Ansible, Terraform, Docker, and GitHub Actions** — the same tools used in modern DevOps environments.
 
-## Quickstart
-- `ansible/playbooks/patch.yml` — safely patch Linux hosts (simulate with `--check`)
-- `terraform/aws-ec2` — `terraform init && terraform validate`
-- `docker/reverse-proxy` — `docker compose up -d` (local)
+---
 
-> No secrets are committed. Use environment variables or local files ignored by git.
+## 🧠 Tech Stack
+- **Linux / Fedora / Ubuntu**
+- **Ansible** – system automation and patch management  
+- **Terraform** – infrastructure as code (AWS + Proxmox examples)  
+- **Docker Compose** – lightweight service orchestration  
+- **GitHub Actions** – CI/CD automation and syntax validation  
+- **AWS** – cloud infrastructure provisioning  
 
-## Roadmap
-- [ ] Add Jenkinsfile for CI/CD
-- [ ] Add Packer for AMI builds
-- [ ] Add Prometheus/Grafana docker stack
-- [ ] Add Proxmox API Terraform examples
+---
+
+## 📁 Repository Structure
+
+---
+
+## 🚀 Quickstart
+
+### Ansible
+```bash
+cd ansible
+ansible-playbook playbooks/patch.yml --check --diff -K
