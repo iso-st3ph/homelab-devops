@@ -54,3 +54,32 @@ __pycache__/
 
 # Docker
 docker-data/
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*.tfvars
+*.tfvars.json
+
+# Ansible (never commit secrets/inventories with creds)
+*.retry
+*.vault
+*.vault_pass
+inventories/*_secrets.yml
+
+# Keys / certs
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.p12
+
+# Editor/OS
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.pyc
