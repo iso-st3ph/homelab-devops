@@ -40,3 +40,13 @@ It demonstrates real-world experience using **Ansible, Terraform, Docker, and Gi
 ```bash
 cd ansible
 ansible-playbook playbooks/patch.yml --check --diff -K
+
+---
+
+## 🤝 Contributing / Contact
+Questions or ideas? Open an Issue or reach out:
+
+- **LinkedIn:** https://www.linkedin.com/in/stephon-skipper/
+- **Site:** https://ayoskip.info
+
+If this repo helped you, ⭐ it and follow along as I add Jenkins, Packer, Grafana/Prometheus, and Proxmox automation.
