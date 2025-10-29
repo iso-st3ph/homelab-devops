@@ -1,0 +1,40 @@
+---
+- name: Ensure admin user exists
+  user:
+    name: "{{ admin_user }}"
+    groups: sudo
+    shell: /bin/bash
+    state: present
+    create_home: yes
+
+- name: Add authorized key for admin user
+  authorized_key:
+    user: "{{ admin_user }}"
+    state: present
+    key: "{{ lookup('file', 'files/{{ admin_user }}.pub') }}"
+
+- name: Disable root SSH login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+    state: present
+
+- name: Disable password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+    state: present
+
+- name: Restart SSH service
+  service:
+    name: sshd
+    state: restarted
+  when: ansible_service_mgr == "systemd"
+
+- name: Install Fail2ban (optional)
+  package:
+    name: fail2ban
+    state: present
+  when: enable_fail2ban | default(false)
