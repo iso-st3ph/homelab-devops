@@ -1,11 +1,31 @@
 site_name: Iso-St3ph DevOps Portfolio
+
 theme:
   name: material
+
 nav:
   - Overview: index.md
   - Architecture: architecture.md
   - Pipelines: pipelines.md
   - Projects: projects.md
   - Hire Me: hire-me.md
+
 plugins:
   - search
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences      # enables fenced blocks (incl. mermaid)
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+  - pymdownx.critic
+  - pymdownx.magiclink
+
+# load Mermaid runtime
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
