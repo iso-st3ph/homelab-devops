@@ -1,0 +1,6 @@
+---
+- name: SSH hardening and user management
+  hosts: all
+  become: true
+  roles:
+    - role: secure
