@@ -50,3 +50,7 @@ Questions or ideas? Open an Issue or reach out:
 - **Site:** https://ayoskip.info
 
 If this repo helped you, ⭐ it and follow along as I add Jenkins, Packer, Grafana/Prometheus, and Proxmox automation.
+
+### CI/CD
+- **GitHub Actions**: default CI (syntax/validate)
+- **Jenkins**: `Jenkinsfile` mirrors the same checks for enterprise environments
