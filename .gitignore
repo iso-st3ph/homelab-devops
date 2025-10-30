@@ -83,3 +83,6 @@ id_ed25519*
 .idea/
 __pycache__/
 *.pyc
+
+# MkDocs build output
+site/
