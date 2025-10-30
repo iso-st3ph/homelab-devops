@@ -1,0 +1,11 @@
+site_name: Iso-St3ph DevOps Portfolio
+theme:
+  name: material
+nav:
+  - Overview: index.md
+  - Architecture: architecture.md
+  - Pipelines: pipelines.md
+  - Projects: projects.md
+  - Hire Me: hire-me.md
+plugins:
+  - search
