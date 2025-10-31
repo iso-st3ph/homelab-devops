@@ -86,3 +86,14 @@ __pycache__/
 
 # MkDocs build output
 site/
+
+# Terraform build artifacts
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+# keep the lock file in git (pin provider versions)
+# !.terraform.lock.hcl
