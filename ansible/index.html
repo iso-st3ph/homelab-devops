@@ -408,6 +408,41 @@ aws-prod ansible_host=54.123.45.67
     - security    # firewall, fail2ban, ssh hardening
     - docker      # docker + compose install
 </code></pre></div>
+<h2 id="ansible-execution-screenshot">✅ Ansible Execution Screenshot<a class="headerlink" href="#ansible-execution-screenshot" title="Permanent link">&para;</a></h2>
+<p>Below is a real run of my Ansible playbook against my homelab VMs:</p>
+<p><img alt="Ansible Run" src="../assets/ansible-run.png" /></p>
+<h2 id="ansible-workflow-diagram">🔧 Ansible Workflow Diagram<a class="headerlink" href="#ansible-workflow-diagram" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>flowchart LR
+  GH[Git Push to GitHub] --&gt; CI[CI Pipeline]
+  CI --&gt; Lint[Lint + Security Scan]
+  CI --&gt; Deploy[Run Ansible Playbook]
+  Deploy --&gt; Proxmox[Configure Proxmox VMs]
+  Deploy --&gt; AWS[Configure AWS EC2 Instance]
+  Proxmox --&gt; Services[Deploy Homelab Services]
+  AWS --&gt; Services
+  Services --&gt; Smoke[Smoke Tests / Health Checks]
+
+  [proxmox]
+192.xxx.x.xxx
+192.xxx.x.xxx
+
+[aws]
+3.89.xx.xx
+
+- name: Homelab Automation Demo
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Ping test
+      ping:
+
+    - name: Ensure NGINX installed (example)
+      apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == &quot;Debian&quot;
+</code></pre></div>
 
 
 
