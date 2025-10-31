@@ -1,3 +1,5 @@
+[![Infra Lint](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml) [![Docs](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml/badge.svg)](https://iso-st3ph.github.io/homelab-devops/)
+
 # homelab-devops
 _A practical DevOps portfolio built from a real homelab environment._
 
@@ -57,3 +59,10 @@ If this repo helped you, ⭐ it and follow along as I add Jenkins, Packer, Grafa
 ### CI/CD
 - **GitHub Actions**: default CI (syntax/validate)
 - **Jenkins**: `Jenkinsfile` mirrors the same checks for enterprise environments
+
+## What’s inside
+- **IaC:** Terraform (EC2 module with IMDSv2, SSM, encrypted volumes)
+- **Config:** Ansible baseline role
+- **Containers:** Reverse proxy demo
+- **CI:** pre-commit, TFLint, Checkov, Hadolint, Ansible-lint, Terraform tests
+- **Docs:** MkDocs Material → https://iso-st3ph.github.io/homelab-devops/
