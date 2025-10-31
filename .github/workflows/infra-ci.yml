@@ -1,5 +1,7 @@
 # .github/workflows/infra-ci.yml
 name: Infra Lint
+permissions:
+  contents: read
 
 on:
   pull_request:
