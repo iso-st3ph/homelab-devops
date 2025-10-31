@@ -1,23 +1,27 @@
 site_name: Iso-St3ph DevOps Portfolio
+site_url: https://iso-st3ph.github.io/homelab-devops/
 repo_url: https://github.com/iso-st3ph/homelab-devops
 repo_name: iso-st3ph/homelab-devops
 
 theme:
   name: material
   features:
-    - content.code.copy
     - navigation.instant
-    - navigation.tracking
     - navigation.footer
+    - navigation.tracking
+    - toc.integrate
+    - content.code.copy
+    - content.action.edit
     - search.suggest
     - search.highlight
-    - toc.integrate
     - tabs
     - diagrams
   palette:
     - scheme: slate
       primary: indigo
       accent: cyan
+  icon:
+    repo: fontawesome/brands/github
 
 plugins:
   - search
@@ -32,7 +36,6 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.tabbed
   - pymdownx.tasklist
-  - pymdownx.critic
   - pymdownx.magiclink
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
@@ -44,7 +47,3 @@ nav:
   - Pipelines: pipelines.md
   - Projects: projects.md
   - Hire Me: hire-me.md
-
-extra_javascript:
-  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - assets/mermaid-init.js
