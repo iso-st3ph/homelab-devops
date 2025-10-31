@@ -1,0 +1,59 @@
+name: Infra Lint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install linters
+        run: |
+          pip install pre-commit checkov ansible-lint
+          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          sudo mv ./bin/tflint /usr/local/bin/
+          curl -sL https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64 -o hadolint
+          chmod +x hadolint && sudo mv hadolint /usr/local/bin/
+
+      - name: Run pre-commit (fmt/validate/yamllint/etc.)
+        run: pre-commit run -a
+
+      - name: Terraform validate (no backend)
+        run: |
+          if [ -d terraform ]; then
+            find terraform -maxdepth 2 -name "*.tf" -printf '%h\n' | sort -u | while read dir; do
+              ( cd "$dir" && terraform init -backend=false -input=false && terraform validate )
+            done
+          fi
+
+      - name: TFLint
+        run: |
+          if [ -d terraform ]; then
+            tflint --recursive
+          fi
+
+      - name: Checkov (Terraform, Dockerfile, Ansible)
+        run: checkov -d .
+
+      - name: Hadolint (Dockerfiles)
+        run: |
+          if git ls-files | grep -Ei '(Dockerfile|.*Dockerfile)$' >/dev/null; then
+            git ls-files | grep -Ei '(Dockerfile|.*Dockerfile)$' | xargs -I{} hadolint {}
+          else
+            echo "No Dockerfiles found."
+          fi
+
+      - name: Ansible-lint
+        run: |
+          if [ -d ansible ]; then
+            ansible-lint ansible || true
+          fi

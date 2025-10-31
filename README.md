@@ -5,6 +5,9 @@ _A practical DevOps portfolio built from a real homelab environment._
 ![Terraform](https://img.shields.io/badge/Terraform-validated-blueviolet?logo=terraform)
 ![Ansible](https://img.shields.io/badge/Ansible-tested-darkred?logo=ansible)
 ![Docker](https://img.shields.io/badge/Docker-ready-blue?logo=docker)
+[![Infra Lint](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml)
+[![Docs](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml/badge.svg)](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml)
+
 
 This repository showcases **automation and infrastructure management** for my personal homelab.  
 It demonstrates real-world experience using **Ansible, Terraform, Docker, and GitHub Actions** — the same tools used in modern DevOps environments.
