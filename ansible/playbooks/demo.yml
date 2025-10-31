@@ -1,0 +1,26 @@
+- name: Homelab Automation Demo
+  hosts: all
+  become: yes
+  gather_facts: true
+
+  tasks:
+    - name: Ensure curl installed
+      package:
+        name: curl
+        state: present
+
+    - name: Print hostname
+      command: hostname
+      register: host_out
+
+    - name: Show hostname
+      debug:
+        msg: "Server: {{ host_out.stdout }}"
+
+    - name: Show OS info
+      debug:
+        msg: "OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Show Kernel
+      debug:
+        msg: "Kernel: {{ ansible_kernel }}"
