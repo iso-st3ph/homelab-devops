@@ -9,11 +9,10 @@ variable "instance_type" {
 }
 
 variable "key_name" {
-  type    = string
-  default = null
+  type = string
 }
 
 variable "tags" {
   type    = map(string)
-  default = { project = "homelab-devops" }
+  default = {}
 }

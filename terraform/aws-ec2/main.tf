@@ -1,16 +1,9 @@
-terraform {
-  # Local state by default (safe in repo); S3 backend example commented.
-  # backend "s3" {
-  #   bucket  = "YOUR-BUCKET"
-  #   key     = "tfstate/homelab-devops/aws-ec2.tfstate"
-  #   region  = "us-east-1"
-  #   encrypt = true
-  # }
+provider "aws" {
+  region = var.region
 }
 
 module "ec2_minimal" {
-  source        = "../modules/ec2_minimal"
-  region        = var.region
+  source        = "../modules/ec2_minimal" # adjust if your path differs
   instance_type = var.instance_type
   key_name      = var.key_name
   tags          = var.tags
