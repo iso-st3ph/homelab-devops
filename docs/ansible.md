@@ -82,4 +82,5 @@ flowchart LR
         name: nginx
         state: present
       when: ansible_os_family == "Debian"
-```
+```mermaid
+

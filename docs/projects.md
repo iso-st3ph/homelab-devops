@@ -1,22 +1,22 @@
 # Projects
 
-## Terraform: EC2 Minimal Module
-- Opinionated tags, keypair, security group.
-- Outputs feed Ansible inventory.
-- **Code:** `terraform/modules/ec2_minimal/`
-- **Try it:** `terraform/examples/ec2_minimal/`
+## 👇 Quick links
+- **Terraform Module:** `terraform/modules/ec2_minimal/`
+- **AWS Example:** `terraform/aws-ec2/`
+- **Ansible Role:** `ansible/roles/secure/`
+- **Reverse Proxy Demo:** `docker/reverse-proxy/`
 
-## Ansible: Nginx/Hardening role
-- Idempotent tasks, handler notifications, Molecule-ready layout.
-- **Playbook:** `ansible/site.yml`
-- **Role:** `ansible/roles/secure/`
+---
 
-## Docker: Reverse Proxy Demo
-- `docker-compose.yml` with a `whoami` app behind the proxy.
-- Healthchecks + simple smoke script.
-- **Folder:** `docker/reverse-proxy/`
+## Terraform: EC2 minimal
+!!! abstract "What it does"
+    - IMDSv2 required, EBS optimized, encrypted root volume  
+    - Optional SSM instance profile (zero-SSH)  
+    - Outputs public IP / instance ID
 
-## CI/CD
-- Pre-commit: fmt/validate + yamllint.
-- (Optional) GitHub Actions `docs.yml` to auto-publish MkDocs.
-- Jenkinsfile mirrors IaC workflow with a manual gate.
+**Try it**
+
+cd terraform/aws-ec2
+terraform init -backend=false
+terraform plan -var key_name=MY_KEY
+

@@ -1,7 +1,14 @@
+[![Deploy Docs](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml/badge.svg)](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml)
+
+# Homelab DevOps Portfolio
+
+Live site: https://iso-st3ph.github.io/homelab-devops/
+
+
 [![Infra Lint](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml) [![Docs](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml/badge.svg)](https://iso-st3ph.github.io/homelab-devops/)
 
-# homelab-devops
-_A practical DevOps portfolio built from a real homelab environment._
+<!-- # homelab-devops
+_A practical DevOps portfolio built from a real homelab environment._ -->
 
 ![CI](https://github.com/iso-st3ph/homelab-devops/actions/workflows/ci.yml/badge.svg)
 ![Terraform](https://img.shields.io/badge/Terraform-validated-blueviolet?logo=terraform)

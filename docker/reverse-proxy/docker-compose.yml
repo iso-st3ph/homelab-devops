@@ -1,7 +1,19 @@
-version: "3.9"
 services:
-  echo:
-    image: ealen/echo-server:latest
+  reverse-proxy:
+    image: nginx:alpine
+    container_name: reverse-proxy
     ports:
       - "8080:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro,Z
+
+    depends_on:
+      - whoami
+    restart: unless-stopped
+
+  whoami:
+    image: containous/whoami
+    container_name: whoami
+    expose:
+      - "80"
     restart: unless-stopped

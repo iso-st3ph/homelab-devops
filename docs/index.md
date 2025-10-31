@@ -20,3 +20,23 @@ flowchart TD
   F -->|Alt Target| I[Proxmox VM + NFS]
   G -->|Smoke Tests| J[Health Checks]
 
+## 📁 Projects
+
+- 🏗️ [Terraform Infrastructure](terraform.md)
+- 🤖 [Ansible Automation](ansible.md)
+- 🐳 [Docker Reverse Proxy](docker.md)
+- 🛰️ End-to-end DevOps CI/CD Lab
+
+---
+
+## 🎯 About This Lab
+
+This homelab is built to simulate real-world DevOps:
+
+✅ Git-based workflows  
+✅ CI pipelines & automated linting  
+✅ Terraform infrastructure provisioning  
+✅ Ansible configuration management  
+✅ Docker applications behind a reverse proxy  
+
+> Goal: Operate like a production infrastructure in a home lab environment.

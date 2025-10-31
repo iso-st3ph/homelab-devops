@@ -42,8 +42,9 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
-  - Overview: index.md
+  - Home: index.md
   - Architecture: architecture.md
-  - Pipelines: pipelines.md
-  - Projects: projects.md
+  - Terraform: terraform.md
+  - Ansible: ansible.md
+  - Docker / Reverse Proxy: docker.md
   - Hire Me: hire-me.md
