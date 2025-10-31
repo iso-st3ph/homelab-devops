@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://iso-st3ph.github.io/homelab-devops/ansible/">
       
       
+        <link rel="prev" href="../terraform/">
+      
+      
+        <link rel="next" href="../docker/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Ansible Automation - Iso-St3ph DevOps Portfolio</title>
+        <title>Ansible - Iso-St3ph DevOps Portfolio</title>
       
     
     
@@ -106,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ansible Automation
+              Ansible
             
           </span>
         </div>
@@ -247,7 +251,7 @@
   
   
   <span class="md-ellipsis">
-    Overview
+    Home
     
   </span>
   
@@ -286,12 +290,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/" class="md-nav__link">
+      <a href="../terraform/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Pipelines
+    Terraform
     
   </span>
   
@@ -305,15 +309,106 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../projects/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Projects
+    Ansible
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-automation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 End-to-End Automation Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-execution-screenshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Ansible Execution Screenshot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-workflow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Ansible Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker / Reverse Proxy
     
   </span>
   
@@ -412,7 +507,8 @@ aws-prod ansible_host=54.123.45.67
 <p>Below is a real run of my Ansible playbook against my homelab VMs:</p>
 <p><img alt="Ansible Run" src="../assets/ansible-run.png" /></p>
 <h2 id="ansible-workflow-diagram">🔧 Ansible Workflow Diagram<a class="headerlink" href="#ansible-workflow-diagram" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>flowchart LR
+<p>```mermaid
+flowchart LR
   GH[Git Push to GitHub] --&gt; CI[CI Pipeline]
   CI --&gt; Lint[Lint + Security Scan]
   CI --&gt; Deploy[Run Ansible Playbook]
@@ -420,29 +516,27 @@ aws-prod ansible_host=54.123.45.67
   Deploy --&gt; AWS[Configure AWS EC2 Instance]
   Proxmox --&gt; Services[Deploy Homelab Services]
   AWS --&gt; Services
-  Services --&gt; Smoke[Smoke Tests / Health Checks]
-
-  [proxmox]
+  Services --&gt; Smoke[Smoke Tests / Health Checks]</p>
+<p>[proxmox]
 192.xxx.x.xxx
-192.xxx.x.xxx
-
-[aws]
-3.89.xx.xx
-
-- name: Homelab Automation Demo
+192.xxx.x.xxx</p>
+<p>[aws]
+3.89.xx.xx</p>
+<ul>
+<li>name: Homelab Automation Demo
   hosts: all
-  become: true
-
-  tasks:
+  become: true</li>
+</ul>
+<p>tasks:
     - name: Ping test
-      ping:
-
-    - name: Ensure NGINX installed (example)
-      apt:
-        name: nginx
-        state: present
-      when: ansible_os_family == &quot;Debian&quot;
+      ping:</p>
+<div class="highlight"><pre><span></span><code>- name: Ensure NGINX installed (example)
+  apt:
+    name: nginx
+    state: present
+  when: ansible_os_family == &quot;Debian&quot;
 </code></pre></div>
+<p>```mermaid</p>
 
 
 
@@ -467,6 +561,44 @@ aws-prod ansible_host=54.123.45.67
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../terraform/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Terraform">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Terraform
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Docker / Reverse Proxy">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Docker / Reverse Proxy
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

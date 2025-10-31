@@ -11,10 +11,6 @@
         <link rel="canonical" href="https://iso-st3ph.github.io/homelab-devops/projects/">
       
       
-        <link rel="prev" href="../pipelines/">
-      
-      
-        <link rel="next" href="../hire-me/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -251,7 +247,7 @@
   
   
   <span class="md-ellipsis">
-    Overview
+    Home
     
   </span>
   
@@ -290,12 +286,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/" class="md-nav__link">
+      <a href="../terraform/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Pipelines
+    Terraform
     
   </span>
   
@@ -309,98 +305,42 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Projects
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Projects
+    Ansible
     
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#terraform-ec2-minimal-module" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terraform: EC2 Minimal Module
-    </span>
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#ansible-nginxhardening-role" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ansible: Nginx/Hardening role
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-reverse-proxy-demo" class="md-nav__link">
-    <span class="md-ellipsis">
-      Docker: Reverse Proxy Demo
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cicd" class="md-nav__link">
-    <span class="md-ellipsis">
-      CI/CD
-    </span>
-  </a>
   
-</li>
-      
-    </ul>
   
-</nav>
-      
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker / Reverse Proxy
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -452,31 +392,27 @@
 
 
 <h1 id="projects">Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h1>
-<h2 id="terraform-ec2-minimal-module">Terraform: EC2 Minimal Module<a class="headerlink" href="#terraform-ec2-minimal-module" title="Permanent link">&para;</a></h2>
+<h2 id="quick-links">👇 Quick links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Opinionated tags, keypair, security group.</li>
-<li>Outputs feed Ansible inventory.</li>
-<li><strong>Code:</strong> <code>terraform/modules/ec2_minimal/</code></li>
-<li><strong>Try it:</strong> <code>terraform/examples/ec2_minimal/</code></li>
+<li><strong>Terraform Module:</strong> <code>terraform/modules/ec2_minimal/</code></li>
+<li><strong>AWS Example:</strong> <code>terraform/aws-ec2/</code></li>
+<li><strong>Ansible Role:</strong> <code>ansible/roles/secure/</code></li>
+<li><strong>Reverse Proxy Demo:</strong> <code>docker/reverse-proxy/</code></li>
 </ul>
-<h2 id="ansible-nginxhardening-role">Ansible: Nginx/Hardening role<a class="headerlink" href="#ansible-nginxhardening-role" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="terraform-ec2-minimal">Terraform: EC2 minimal<a class="headerlink" href="#terraform-ec2-minimal" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">What it does</p>
 <ul>
-<li>Idempotent tasks, handler notifications, Molecule-ready layout.</li>
-<li><strong>Playbook:</strong> <code>ansible/site.yml</code></li>
-<li><strong>Role:</strong> <code>ansible/roles/secure/</code></li>
+<li>IMDSv2 required, EBS optimized, encrypted root volume  </li>
+<li>Optional SSM instance profile (zero-SSH)  </li>
+<li>Outputs public IP / instance ID</li>
 </ul>
-<h2 id="docker-reverse-proxy-demo">Docker: Reverse Proxy Demo<a class="headerlink" href="#docker-reverse-proxy-demo" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>docker-compose.yml</code> with a <code>whoami</code> app behind the proxy.</li>
-<li>Healthchecks + simple smoke script.</li>
-<li><strong>Folder:</strong> <code>docker/reverse-proxy/</code></li>
-</ul>
-<h2 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Pre-commit: fmt/validate + yamllint.</li>
-<li>(Optional) GitHub Actions <code>docs.yml</code> to auto-publish MkDocs.</li>
-<li>Jenkinsfile mirrors IaC workflow with a manual gate.</li>
-</ul>
+</div>
+<p><strong>Try it</strong></p>
+<p>cd terraform/aws-ec2
+terraform init -backend=false
+terraform plan -var key_name=MY_KEY</p>
 
 
 
@@ -501,44 +437,6 @@
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../pipelines/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Pipelines">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Pipelines
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../hire-me/" class="md-footer__link md-footer__link--next" aria-label="Next: Hire Me">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Hire Me
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">

@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://iso-st3ph.github.io/homelab-devops/reverse-proxy/">
+        <link rel="canonical" href="https://iso-st3ph.github.io/homelab-devops/docker/">
       
       
+        <link rel="prev" href="../ansible/">
+      
+      
+        <link rel="next" href="../hire-me/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Docker & Reverse Proxy - Iso-St3ph DevOps Portfolio</title>
+        <title>Docker / Reverse Proxy - Iso-St3ph DevOps Portfolio</title>
       
     
     
@@ -69,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#docker-reverse-proxy" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -106,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker &amp; Reverse Proxy
+              Docker / Reverse Proxy
             
           </span>
         </div>
@@ -327,10 +326,17 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../docker/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -341,6 +347,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -383,7 +390,7 @@
 
 
   
-    <a href="https://github.com/iso-st3ph/homelab-devops/edit/master/docs/reverse-proxy.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/iso-st3ph/homelab-devops/edit/master/docs/docker.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -391,68 +398,9 @@
   
 
 
-<h1 id="docker-reverse-proxy">Docker &amp; Reverse Proxy<a class="headerlink" href="#docker-reverse-proxy" title="Permanent link">&para;</a></h1>
-<p>This repository includes a lightweight container platform running internal services behind a reverse proxy.</p>
-<hr />
-<h2 id="core-components">✅ Core Components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Docker Engine / Compose</td>
-<td>Container runtime &amp; orchestration</td>
-</tr>
-<tr>
-<td>Nginx Reverse Proxy</td>
-<td>Front door to services</td>
-</tr>
-<tr>
-<td>whoami test service</td>
-<td>Demo backend to validate routing</td>
-</tr>
-<tr>
-<td>Health checks</td>
-<td>Validate uptime + internal routing</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="folder-structure">🧱 Folder Structure<a class="headerlink" href="#folder-structure" title="Permanent link">&para;</a></h2>
-<p>```bash
-docker/reverse-proxy/
-├─ docker-compose.yml
-└─ nginx/
-   └─ conf.d/
-      └─ whoami.conf</p>
-<p>flowchart LR
-User[Client] --&gt; Proxy[Nginx Reverse Proxy]
-Proxy --&gt; whoami[Test Container]
-Proxy --&gt; OtherApps[Future Apps (Grafana, Wazuh, etc)]</p>
-<p>🔐 Reverse Proxy Config (Nginx)
-server {
-  listen 80;
-  server_name _;</p>
-<p>location / {
-    proxy_pass <a href="http://whoami:80">http://whoami:80</a>;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-  }
-}</p>
-<p>🚀 Deployment</p>
-<p>cd docker/reverse-proxy
-docker-compose up -d</p>
-<p>🧪 Smoke Test</p>
-<p>curl -sI <a href="http://localhost:8080">http://localhost:8080</a> | head -n 1
-curl <a href="http://localhost:8080">http://localhost:8080</a></p>
-<p>✅ Live Proof</p>
-<p>See docs/images/ for screenshot</p>
+  <h1>Docker / Reverse Proxy</h1>
+
+
 
 
 
@@ -477,6 +425,44 @@ curl <a href="http://localhost:8080">http://localhost:8080</a></p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../ansible/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Ansible">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Ansible
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../hire-me/" class="md-footer__link md-footer__link--next" aria-label="Next: Hire Me">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Hire Me
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
