@@ -49,7 +49,7 @@ It demonstrates real-world experience using **Ansible, Terraform, Docker, and Gi
 ## 🚀 Quickstart
 
 ### Ansible
-```bash
+
 cd ansible
 ansible-playbook playbooks/patch.yml --check --diff -K
 
