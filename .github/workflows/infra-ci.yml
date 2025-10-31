@@ -1,13 +1,13 @@
-# .github/workflows/infra-ci.yml
 name: Infra Lint
-permissions:
-  contents: read
 
 on:
   pull_request:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
 
 jobs:
   lint:
@@ -20,19 +20,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      # ✅ Install Terraform so pre-commit's terraform_validate can run
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_wrapper: false          # keeps raw terraform output
-          terraform_version: latest         # or pin, e.g. '1.9.8'
+          terraform_wrapper: false
+          terraform_version: latest
 
       - name: Install linters
         run: |
           pip install pre-commit checkov ansible-lint
           curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-          curl -sL https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64 -o hadolint
-          chmod +x hadolint && sudo mv hadolint /usr/local/bin/
+          curl --fail --location -o hadolint https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod +x hadolint
+          sudo mv hadolint /usr/local/bin/
 
       - name: Run pre-commit (fmt/validate/yamllint/etc.)
         run: pre-commit run -a
@@ -50,6 +50,12 @@ jobs:
           if [ -d terraform ]; then
             tflint --recursive
           fi
+
+      - name: Terraform tests (ec2_minimal module)
+        working-directory: terraform/modules/ec2_minimal
+        run: |
+          terraform init -backend=false
+          terraform test
 
       - name: Checkov (Terraform, Dockerfile, Ansible)
         run: checkov -d .
