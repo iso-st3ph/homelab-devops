@@ -277,6 +277,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -288,6 +301,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#proxmox-virtualization-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proxmox Virtualization Layer
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -385,20 +426,24 @@
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code>flowchart LR
-  Dev[Dev Laptop] --&gt;|git push| CI[CI (GitHub Actions/Jenkins)]
-  CI --&gt; Lint[Static checks\npre-commit · TFLint · Checkov · Ansible-lint · Hadolint]
-  CI --&gt; Plan[Terraform Plan]
-  Plan --&gt;|manual gate| Approve[Approve]
-  Approve --&gt; Apply[Terraform Apply]
-  Apply --&gt; AWS[AWS: EC2/SG/VPC]
+  Dev[Developer] --&gt;|Git push| CI[GitHub Actions/Jenkins]
+  CI --&gt; Lint[pre-commit · TFLint · Checkov · Hadolint · ansible-lint]
+  CI --&gt; Plan[Terraform Plan] --&gt; Gate[Manual Approve] --&gt; Apply[Terraform Apply]
+  Apply --&gt; AWS[AWS EC2]
   Apply --&gt; Proxmox[Proxmox VM]
-  Proxmox --&gt; NFS[NFS (45Drives)]
-  Apply --&gt; DNS[DNS/Records]
-  AWS --&gt; Ansible[Ansible Config]
+  Proxmox --&gt; NFS[45Drives NFS]
+  AWS --&gt; Ansible[Ansible Configure]
   Proxmox --&gt; Ansible
-  Ansible --&gt; App[Reverse Proxy + App (Docker)]
-  App --&gt; Smoke[Smoke tests/health checks]
+  Ansible --&gt; Proxy[Reverse Proxy (Docker)]
+  Proxy --&gt; Smoke[Health/Smoke]
 </code></pre></div>
+<h2 id="proxmox-virtualization-layer">Proxmox Virtualization Layer<a class="headerlink" href="#proxmox-virtualization-layer" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>This node runs my core homelab workloads: Docker nodes, Nginx reverse proxy, Wazuh, an Ubuntu admin VM, NFS mount (45Drives), and Proxmox Backup Server (PBS).</p>
+</blockquote>
+<div align="center">
+  <img src="assets/images/proxmox-dashboard.png" width="90%" style="border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.35);" alt="Proxmox dashboard showing node, VMs, LXC containers, and storage." />
+</div>
 
 
 
