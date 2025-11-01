@@ -22,7 +22,11 @@ flowchart LR
   Inventory --> Ansible[Run Ansible Playbooks]
   Ansible --> Deploy[Deploy Apps & Config]
   Deploy --> Health[Smoke Tests / Health Checks]
+```
 
+## 📋 Example Inventory
+
+```ini
 [proxmox]
 dockenode1 ansible_host=192.168.1.201
 dockenode2 ansible_host=192.168.1.202
@@ -32,7 +36,11 @@ pbs ansible_host=192.168.1.205
 
 [aws]
 aws-prod ansible_host=54.123.45.67
+```
 
+## 📝 Example Playbook
+
+```yaml
 - name: Base configuration
   hosts: all
   become: yes
@@ -61,14 +69,22 @@ flowchart LR
   Proxmox --> Services[Deploy Homelab Services]
   AWS --> Services
   Services --> Smoke[Smoke Tests / Health Checks]
+```
 
-  [proxmox]
+## 📋 Example Inventory (Production)
+
+```ini
+[proxmox]
 192.xxx.x.xxx
 192.xxx.x.xxx
 
 [aws]
 3.89.xx.xx
+```
 
+## 📝 Demo Playbook Example
+
+```yaml
 - name: Homelab Automation Demo
   hosts: all
   become: true
@@ -82,5 +98,5 @@ flowchart LR
         name: nginx
         state: present
       when: ansible_os_family == "Debian"
-```mermaid
+```
 

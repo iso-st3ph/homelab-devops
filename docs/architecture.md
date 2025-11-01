@@ -13,6 +13,7 @@ flowchart LR
   Ansible --> Proxy[Reverse Proxy (Docker)]
   Proxy --> Smoke[Health/Smoke]
 ```
+
 ## Proxmox Virtualization Layer
 
 > This node runs my core homelab workloads: Docker nodes, Nginx reverse proxy, Wazuh, an Ubuntu admin VM, NFS mount (45Drives), and Proxmox Backup Server (PBS).
@@ -20,4 +21,4 @@ flowchart LR
 <div align="center">
   <img src="assets/images/proxmox-dashboard.png" width="90%" style="border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.35);" alt="Proxmox dashboard showing node, VMs, LXC containers, and storage." />
 </div>
-```mermaid
+
