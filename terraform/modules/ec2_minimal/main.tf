@@ -36,12 +36,12 @@ resource "aws_iam_instance_profile" "ssm" {
 }
 
 # Egress-only SG (no SSH ingress)
-#checkov:skip=CKV_AWS_382:Egress to 0.0.0.0/0 is intentional - allows instance to download updates and access AWS services
 resource "aws_security_group" "egress_only" {
   name        = "${var.name}-egress-only-sg"
   description = "No inbound rules; allow all egress"
   vpc_id      = var.vpc_id
 
+  #checkov:skip=CKV_AWS_382:Egress to 0.0.0.0/0 is intentional - allows instance to download updates and access AWS services
   egress {
     protocol    = "-1"
     from_port   = 0
