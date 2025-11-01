@@ -43,6 +43,7 @@ resource "aws_security_group" "egress_only" {
 
   #checkov:skip=CKV_AWS_382:Egress to 0.0.0.0/0 is intentional - allows instance to download updates and access AWS services
   egress {
+    description = "Allow all outbound traffic for system updates and AWS service access"
     protocol    = "-1"
     from_port   = 0
     to_port     = 0
