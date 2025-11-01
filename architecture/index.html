@@ -449,14 +449,14 @@
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code>flowchart LR
   Dev[Developer] --&gt;|Git push| CI[GitHub Actions/Jenkins]
-  CI --&gt; Lint[pre-commit · TFLint · Checkov · Hadolint · ansible-lint]
+  CI --&gt; Lint[pre-commit TFLint Checkov Hadolint ansible-lint]
   CI --&gt; Plan[Terraform Plan] --&gt; Gate[Manual Approve] --&gt; Apply[Terraform Apply]
   Apply --&gt; AWS[AWS EC2]
   Apply --&gt; Proxmox[Proxmox VM]
   Proxmox --&gt; NFS[45Drives NFS]
   AWS --&gt; Ansible[Ansible Configure]
   Proxmox --&gt; Ansible
-  Ansible --&gt; Proxy[Reverse Proxy (Docker)]
+  Ansible --&gt; Proxy[Reverse Proxy Docker]
   Proxy --&gt; Smoke[Health/Smoke]
 </code></pre></div>
 <h2 id="proxmox-virtualization-layer">Proxmox Virtualization Layer<a class="headerlink" href="#proxmox-virtualization-layer" title="Permanent link">&para;</a></h2>
