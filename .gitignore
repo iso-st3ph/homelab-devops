@@ -77,6 +77,16 @@ id_rsa*
 id_ed25519*
 *.p12
 
+# AWS credentials
+.aws/
+**/credentials
+**/.aws/credentials
+
+# Environment variables
+.env
+.env.local
+*.env
+
 # Editor/OS
 .DS_Store
 .vscode/

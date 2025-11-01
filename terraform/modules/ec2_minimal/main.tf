@@ -9,8 +9,7 @@ data "aws_ami" "ubuntu" {
 
 # Optional IAM role/profile so the instance can be managed via SSM (no SSH)
 resource "aws_iam_role" "ssm" {
-  count = var.enable_ssm_role ? 1 : 0
-
+  count       = var.enable_ssm_role ? 1 : 0
   name_prefix = "homelab-ec2-ssm-"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -36,11 +35,32 @@ resource "aws_iam_instance_profile" "ssm" {
   tags        = var.tags
 }
 
+# Egress-only SG (no SSH ingress)
+resource "aws_security_group" "egress_only" {
+  name        = "${var.name}-egress-only-sg"
+  description = "No inbound rules; allow all egress"
+  vpc_id      = var.vpc_id
+
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge({ Name = "${var.name}-egress-only-sg" }, var.tags)
+}
+
 resource "aws_instance" "this" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  key_name      = var.key_name
   monitoring    = true
+
+  # set var.key_name = null to avoid SSH key injection (SSM only)
+  key_name = var.key_name
+
+  subnet_id              = var.subnet_id
+  vpc_security_group_ids = [aws_security_group.egress_only.id]
 
   # Enforce IMDSv2 + tag access
   metadata_options {
@@ -59,11 +79,7 @@ resource "aws_instance" "this" {
     delete_on_termination = true
   }
 
-  # Attach profile when enabled (null when disabled)
   iam_instance_profile = try(aws_iam_instance_profile.ssm[0].name, null)
 
-  tags = merge(
-    { Name = "homelab-ec2" },
-    var.tags
-  )
+  tags = merge({ Name = var.name }, var.tags)
 }
