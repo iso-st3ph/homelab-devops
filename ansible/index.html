@@ -371,6 +371,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Example Inventory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-playbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Example Playbook
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ansible-execution-screenshot" class="md-nav__link">
     <span class="md-ellipsis">
       ✅ Ansible Execution Screenshot
@@ -383,6 +401,24 @@
   <a href="#ansible-workflow-diagram" class="md-nav__link">
     <span class="md-ellipsis">
       🔧 Ansible Workflow Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-inventory-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Example Inventory (Production)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-playbook-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Demo Playbook Example
     </span>
   </a>
   
@@ -483,32 +519,33 @@
   Inventory --&gt; Ansible[Run Ansible Playbooks]
   Ansible --&gt; Deploy[Deploy Apps &amp; Config]
   Deploy --&gt; Health[Smoke Tests / Health Checks]
+</code></pre></div>
+<h2 id="example-inventory">📋 Example Inventory<a class="headerlink" href="#example-inventory" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">[proxmox]</span>
+<span class="na">dockenode1 ansible_host</span><span class="o">=</span><span class="s">192.168.1.201</span>
+<span class="na">dockenode2 ansible_host</span><span class="o">=</span><span class="s">192.168.1.202</span>
+<span class="na">wazuh ansible_host</span><span class="o">=</span><span class="s">192.168.1.203</span>
+<span class="na">proxy ansible_host</span><span class="o">=</span><span class="s">192.168.1.204</span>
+<span class="na">pbs ansible_host</span><span class="o">=</span><span class="s">192.168.1.205</span>
 
-[proxmox]
-dockenode1 ansible_host=192.168.1.201
-dockenode2 ansible_host=192.168.1.202
-wazuh ansible_host=192.168.1.203
-proxy ansible_host=192.168.1.204
-pbs ansible_host=192.168.1.205
+<span class="k">[aws]</span>
+<span class="na">aws-prod ansible_host</span><span class="o">=</span><span class="s">54.123.45.67</span>
+</code></pre></div>
+<h2 id="example-playbook">📝 Example Playbook<a class="headerlink" href="#example-playbook" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Base configuration</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
 
-[aws]
-aws-prod ansible_host=54.123.45.67
-
-- name: Base configuration
-  hosts: all
-  become: yes
-
-  roles:
-    - common      # users, system settings
-    - security    # firewall, fail2ban, ssh hardening
-    - docker      # docker + compose install
+<span class="w">  </span><span class="nt">roles</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">common</span><span class="w">      </span><span class="c1"># users, system settings</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">security</span><span class="w">    </span><span class="c1"># firewall, fail2ban, ssh hardening</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker</span><span class="w">      </span><span class="c1"># docker + compose install</span>
 </code></pre></div>
 <h2 id="ansible-execution-screenshot">✅ Ansible Execution Screenshot<a class="headerlink" href="#ansible-execution-screenshot" title="Permanent link">&para;</a></h2>
 <p>Below is a real run of my Ansible playbook against my homelab VMs:</p>
 <p><img alt="Ansible Run" src="../assets/ansible-run.png" /></p>
 <h2 id="ansible-workflow-diagram">🔧 Ansible Workflow Diagram<a class="headerlink" href="#ansible-workflow-diagram" title="Permanent link">&para;</a></h2>
-<p>```mermaid
-flowchart LR
+<div class="highlight"><pre><span></span><code>flowchart LR
   GH[Git Push to GitHub] --&gt; CI[CI Pipeline]
   CI --&gt; Lint[Lint + Security Scan]
   CI --&gt; Deploy[Run Ansible Playbook]
@@ -516,27 +553,31 @@ flowchart LR
   Deploy --&gt; AWS[Configure AWS EC2 Instance]
   Proxmox --&gt; Services[Deploy Homelab Services]
   AWS --&gt; Services
-  Services --&gt; Smoke[Smoke Tests / Health Checks]</p>
-<p>[proxmox]
-192.xxx.x.xxx
-192.xxx.x.xxx</p>
-<p>[aws]
-3.89.xx.xx</p>
-<ul>
-<li>name: Homelab Automation Demo
-  hosts: all
-  become: true</li>
-</ul>
-<p>tasks:
-    - name: Ping test
-      ping:</p>
-<div class="highlight"><pre><span></span><code>- name: Ensure NGINX installed (example)
-  apt:
-    name: nginx
-    state: present
-  when: ansible_os_family == &quot;Debian&quot;
+  Services --&gt; Smoke[Smoke Tests / Health Checks]
 </code></pre></div>
-<p>```mermaid</p>
+<h2 id="example-inventory-production">📋 Example Inventory (Production)<a class="headerlink" href="#example-inventory-production" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">[proxmox]</span>
+<span class="na">192.xxx.x.xxx</span>
+<span class="na">192.xxx.x.xxx</span>
+
+<span class="k">[aws]</span>
+<span class="na">3.89.xx.xx</span>
+</code></pre></div>
+<h2 id="demo-playbook-example">📝 Demo Playbook Example<a class="headerlink" href="#demo-playbook-example" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Homelab Automation Demo</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+<span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ping test</span>
+<span class="w">      </span><span class="nt">ping</span><span class="p">:</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ensure NGINX installed (example)</span>
+<span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_os_family == &quot;Debian&quot;</span>
+</code></pre></div>
 
 
 
