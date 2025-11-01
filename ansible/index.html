@@ -512,14 +512,13 @@
 <p>This ensures consistent, repeatable infrastructure both at home and in the cloud.</p>
 <hr />
 <h2 id="end-to-end-automation-flow">🚀 End-to-End Automation Flow<a class="headerlink" href="#end-to-end-automation-flow" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>flowchart LR
+<pre class="mermaid"><code>flowchart LR
   Git[Developer Commit] --&gt; CI[CI Pipeline: lint/validate/test]
   CI --&gt; Terraform[Terraform Apply]
   Terraform --&gt; Inventory[Generate Dynamic Inventory]
   Inventory --&gt; Ansible[Run Ansible Playbooks]
   Ansible --&gt; Deploy[Deploy Apps &amp; Config]
-  Deploy --&gt; Health[Smoke Tests / Health Checks]
-</code></pre></div>
+  Deploy --&gt; Health[Smoke Tests / Health Checks]</code></pre>
 <h2 id="example-inventory">📋 Example Inventory<a class="headerlink" href="#example-inventory" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">[proxmox]</span>
 <span class="na">dockenode1 ansible_host</span><span class="o">=</span><span class="s">192.168.1.201</span>
@@ -545,7 +544,7 @@
 <p>Below is a real run of my Ansible playbook against my homelab VMs:</p>
 <p><img alt="Ansible Run" src="../assets/ansible-run.png" /></p>
 <h2 id="ansible-workflow-diagram">🔧 Ansible Workflow Diagram<a class="headerlink" href="#ansible-workflow-diagram" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>flowchart LR
+<pre class="mermaid"><code>flowchart LR
   GH[Git Push to GitHub] --&gt; CI[CI Pipeline]
   CI --&gt; Lint[Lint + Security Scan]
   CI --&gt; Deploy[Run Ansible Playbook]
@@ -553,8 +552,7 @@
   Deploy --&gt; AWS[Configure AWS EC2 Instance]
   Proxmox --&gt; Services[Deploy Homelab Services]
   AWS --&gt; Services
-  Services --&gt; Smoke[Smoke Tests / Health Checks]
-</code></pre></div>
+  Services --&gt; Smoke[Smoke Tests / Health Checks]</code></pre>
 <h2 id="example-inventory-production">📋 Example Inventory (Production)<a class="headerlink" href="#example-inventory-production" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">[proxmox]</span>
 <span class="na">192.xxx.x.xxx</span>
@@ -670,6 +668,10 @@
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../assets/mermaid-init.js"></script>
       
     
   </body>

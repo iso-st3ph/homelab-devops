@@ -447,7 +447,7 @@
 
 
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code>flowchart LR
+<pre class="mermaid"><code>flowchart LR
   Dev[Developer] --&gt;|Git push| CI[GitHub Actions/Jenkins]
   CI --&gt; Lint[pre-commit TFLint Checkov Hadolint ansible-lint]
   CI --&gt; Plan[Terraform Plan] --&gt; Gate[Manual Approve] --&gt; Apply[Terraform Apply]
@@ -457,8 +457,7 @@
   AWS --&gt; Ansible[Ansible Configure]
   Proxmox --&gt; Ansible
   Ansible --&gt; Proxy[Reverse Proxy Docker]
-  Proxy --&gt; Smoke[Health/Smoke]
-</code></pre></div>
+  Proxy --&gt; Smoke[Health/Smoke]</code></pre>
 <h2 id="proxmox-virtualization-layer">Proxmox Virtualization Layer<a class="headerlink" href="#proxmox-virtualization-layer" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>This node runs my core homelab workloads: Docker nodes, Nginx reverse proxy, Wazuh, an Ubuntu admin VM, NFS mount (45Drives), and Proxmox Backup Server (PBS).</p>
@@ -558,6 +557,10 @@
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../assets/mermaid-init.js"></script>
       
     
   </body>
