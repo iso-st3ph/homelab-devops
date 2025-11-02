@@ -1,0 +1,152 @@
+---
+# Prometheus Alert Rules for Homelab Monitoring
+# These rules define conditions that trigger alerts sent to AlertManager
+
+groups:
+  - name: node_exporter_alerts
+    interval: 30s
+    rules:
+      # Critical: Node Exporter is down
+      - alert: NodeExporterDown
+        expr: up{job="node_exporter"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: node_exporter
+        annotations:
+          summary: "Node Exporter is down on {{ $labels.instance }}"
+          description: >-
+            Node Exporter has been down for more than 2 minutes on {{ $labels.instance }}.
+            System metrics are not being collected.
+          runbook: >-
+            Check if node_exporter service is running: systemctl status node_exporter
+
+      # Critical: High CPU usage
+      - alert: HighCPUUsage
+        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 5m
+        labels:
+          severity: warning
+          component: cpu
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: >-
+            CPU usage is above 80% (current: {{ $value | humanize }}%)
+            for more than 5 minutes on {{ $labels.instance }}.
+          runbook: "Check top processes: top -b -n 1 | head -20"
+
+      # Critical: High memory usage
+      - alert: HighMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 90
+        for: 5m
+        labels:
+          severity: critical
+          component: memory
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: >-
+            Memory usage is above 90% (current: {{ $value | humanize }}%)
+            on {{ $labels.instance }}.
+          runbook: >-
+            Check memory: free -h && ps aux --sort=-%mem | head -10
+
+      # Critical: Disk space running out
+      - alert: DiskSpaceLow
+        expr: (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) * 100 < 15
+        for: 5m
+        labels:
+          severity: critical
+          component: disk
+        annotations:
+          summary: "Low disk space on {{ $labels.instance }}"
+          description: >-
+            Disk space is below 15% (current: {{ $value | humanize }}%)
+            on {{ $labels.instance }} at {{ $labels.mountpoint }}.
+          runbook: >-
+            Check disk usage: df -h && du -sh /* | sort -rh | head -10
+
+      # Warning: Disk space getting low
+      - alert: DiskSpaceWarning
+        expr: (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) * 100 < 25
+        for: 10m
+        labels:
+          severity: warning
+          component: disk
+        annotations:
+          summary: "Disk space warning on {{ $labels.instance }}"
+          description: >-
+            Disk space is below 25% (current: {{ $value | humanize }}%)
+            on {{ $labels.instance }} at {{ $labels.mountpoint }}.
+          runbook: >-
+            Plan cleanup or expansion. Check du -sh /* | sort -rh | head -10
+
+  - name: docker_container_alerts
+    interval: 30s
+    rules:
+      # Critical: Container down
+      - alert: ContainerDown
+        expr: up{job="cadvisor"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: cadvisor
+        annotations:
+          summary: "cAdvisor is down"
+          description: >-
+            cAdvisor container monitoring has been down for more than 2 minutes.
+            Container metrics unavailable.
+          runbook: "Check docker ps -a | grep cadvisor"
+
+      # Warning: High container memory usage
+      - alert: ContainerHighMemory
+        expr: (container_memory_usage_bytes{name!=""} / container_spec_memory_limit_bytes{name!=""}) * 100 > 90
+        for: 5m
+        labels:
+          severity: warning
+          component: container
+        annotations:
+          summary: "High memory usage in container {{ $labels.name }}"
+          description: "Container {{ $labels.name }} is using {{ $value | humanize }}% of its memory limit."
+          runbook: "Check container: docker stats {{ $labels.name }}"
+
+  - name: prometheus_alerts
+    interval: 30s
+    rules:
+      # Warning: Prometheus scrape failures
+      - alert: PrometheusTargetDown
+        expr: up == 0
+        for: 3m
+        labels:
+          severity: warning
+          component: prometheus
+        annotations:
+          summary: "Prometheus target {{ $labels.job }} is down"
+          description: "Prometheus cannot scrape {{ $labels.job }} on {{ $labels.instance }} for more than 3 minutes."
+          runbook: "Check target availability and network connectivity"
+
+      # Critical: Prometheus is down (self-monitoring)
+      - alert: PrometheusDown
+        expr: up{job="prometheus"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: prometheus
+        annotations:
+          summary: "Prometheus is down"
+          description: "Prometheus monitoring system is not responding."
+          runbook: "Check docker ps | grep prometheus && docker logs mon-prometheus"
+
+  - name: grafana_alerts
+    interval: 30s
+    rules:
+      # Critical: Grafana is down
+      - alert: GrafanaDown
+        expr: up{job="grafana"} == 0
+        for: 2m
+        labels:
+          severity: warning
+          component: grafana
+        annotations:
+          summary: "Grafana is down"
+          description: "Grafana dashboard is not accessible for more than 2 minutes."
+          runbook: "Check docker ps | grep grafana && docker logs mon-grafana"

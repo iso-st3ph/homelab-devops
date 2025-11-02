@@ -1,0 +1,19 @@
+---
+# Non-sensitive variables for all hosts
+# These reference encrypted vault variables
+
+# Grafana configuration
+grafana_admin_user: admin
+grafana_admin_password: "{{ vault_grafana_admin_password }}"
+grafana_port: 3001
+
+# AlertManager configuration
+alertmanager_slack_webhook: "{{ vault_slack_webhook_url }}"
+
+# Prometheus configuration
+prometheus_port: 9090
+prometheus_retention_days: 15
+
+# Node Exporter configuration (from monitoring role)
+node_exporter_version: "1.8.2"
+node_exporter_port: 9100

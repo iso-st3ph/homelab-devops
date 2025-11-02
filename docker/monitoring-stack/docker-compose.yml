@@ -13,8 +13,25 @@ services:
     volumes:
       - prometheus_data:/prometheus
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro,z
+      - ./prometheus/rules:/etc/prometheus/rules:ro,z
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks: [monitoring]
+    restart: unless-stopped
+    depends_on:
+      - alertmanager
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: mon-alertmanager
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+      - --storage.path=/alertmanager
+    ports:
+      - "${ALERTMANAGER_PORT:-9093}:9093"
+    volumes:
+      - alertmanager_data:/alertmanager
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro,z
     networks: [monitoring]
     restart: unless-stopped
 
@@ -70,3 +87,4 @@ networks:
 volumes:
   prometheus_data:
   grafana_data:
+  alertmanager_data:

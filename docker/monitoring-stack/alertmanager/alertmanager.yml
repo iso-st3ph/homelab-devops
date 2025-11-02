@@ -1,0 +1,79 @@
+---
+# AlertManager configuration for homelab monitoring
+# Handles routing and notification of alerts from Prometheus
+
+global:
+  resolve_timeout: 5m
+  # Slack webhook URL configured via environment variable
+  # Set SLACK_WEBHOOK_URL in .env file before enabling Slack notifications
+
+# Route tree for alert notifications
+route:
+  receiver: 'slack-notifications'
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 12h
+
+  routes:
+    # Critical alerts - immediate notification
+    - match:
+        severity: critical
+      receiver: 'slack-critical'
+      group_wait: 0s
+      repeat_interval: 5m
+
+    # Warning alerts - grouped notifications
+    - match:
+        severity: warning
+      receiver: 'slack-notifications'
+      group_wait: 30s
+      repeat_interval: 1h
+
+# Inhibition rules - suppress alerts when higher severity is firing
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'instance']
+
+# Receivers - notification endpoints
+receivers:
+  - name: 'slack-notifications'
+    # Uncomment and configure slack_configs after setting SLACK_WEBHOOK_URL in .env
+    # slack_configs:
+    #   - api_url: '${SLACK_WEBHOOK_URL}'
+    #     channel: '#homelab-alerts'
+    #     username: 'Prometheus AlertManager'
+    #     icon_emoji: ':prometheus:'
+    #     title: '{{ range .Alerts }}{{ .Labels.alertname }}{{ end }}'
+    #     text: >-
+    #       {{ range .Alerts }}
+    #         *Alert:* {{ .Labels.alertname }}
+    #         *Severity:* {{ .Labels.severity }}
+    #         *Instance:* {{ .Labels.instance }}
+    #         *Summary:* {{ .Annotations.summary }}
+    #         *Description:* {{ .Annotations.description }}
+    #       {{ end }}
+    #     send_resolved: true
+
+  - name: 'slack-critical'
+    # Uncomment and configure slack_configs after setting SLACK_WEBHOOK_URL in .env
+    # slack_configs:
+    #   - api_url: '${SLACK_WEBHOOK_URL}'
+    #     channel: '#homelab-critical'
+    #     username: 'Prometheus AlertManager'
+    #     icon_emoji: ':rotating_light:'
+    #     title: ':fire: CRITICAL ALERT :fire:'
+    #     text: >-
+    #       {{ range .Alerts }}
+    #         *Alert:* {{ .Labels.alertname }}
+    #         *Instance:* {{ .Labels.instance }}
+    #         *Summary:* {{ .Annotations.summary }}
+    #         *Description:* {{ .Annotations.description }}
+    #
+    #         *Action Required:* Immediate investigation needed
+    #       {{ end }}
+    #     send_resolved: true
+    #     color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
