@@ -32,3 +32,21 @@ security-scan:
 grafana-dashboards:
 	@echo "Importing Grafana dashboards..."
 	./scripts/import-grafana-dashboards.sh
+
+# Kubernetes
+.PHONY: k8s-deploy k8s-status k8s-logs k8s-clean
+k8s-deploy:  ## Deploy monitoring stack to Kubernetes
+	cd kubernetes/monitoring && ./deploy.sh
+
+k8s-status:  ## Check Kubernetes monitoring stack status
+	export KUBECONFIG=~/.kube/config && kubectl get all -n monitoring
+
+k8s-logs:    ## View Kubernetes pod logs
+	@export KUBECONFIG=~/.kube/config && \
+	echo "Available pods:" && kubectl get pods -n monitoring && \
+	read -p "Enter pod name: " pod && \
+	kubectl logs -f $$pod -n monitoring
+
+k8s-clean:   ## Remove monitoring stack from Kubernetes
+	@export KUBECONFIG=~/.kube/config && \
+	kubectl delete -f kubernetes/monitoring/ || true
