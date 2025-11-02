@@ -2,7 +2,7 @@
 
 ## Overview
 
-This homelab includes a production-grade monitoring stack based on **Prometheus** and **Grafana**, providing real-time metrics, dashboards, and alerting capabilities for infrastructure observability.
+This homelab includes a **production-grade monitoring stack** with **Prometheus, Grafana, and AlertManager**, providing real-time metrics, dashboards, and **automated alerting with Slack integration** for full infrastructure observability.
 
 ## Stack Components
 
@@ -11,16 +11,26 @@ This homelab includes a production-grade monitoring stack based on **Prometheus*
 - Scrapes metrics from multiple exporters every 15 seconds
 - 15-day data retention
 - HTTP API for querying metrics
+- **Alert rule evaluation** with 15+ production-ready alerts
 
 ### Grafana
 - **Visualization platform** for metrics dashboards
 - Pre-configured Prometheus datasource
 - Auto-provisioned dashboards
 - Dark theme by default
+- Supports importing from grafana.com
+
+### AlertManager
+- **Alert routing and notification** system
+- Slack integration for critical/warning alerts
+- Alert grouping and inhibition rules
+- Silencing and acknowledgment support
+- Production-ready alert receiver configuration
 
 ### Node Exporter
 - Exports **host system metrics**: CPU, memory, disk I/O, network
 - Runs in host network mode for accurate data collection
+- Deployed to remote hosts via Ansible automation
 
 ### cAdvisor
 - **Container metrics** for Docker
@@ -34,12 +44,13 @@ This homelab includes a production-grade monitoring stack based on **Prometheus*
 make mon-up
 
 # Access services
-# Grafana:       http://localhost:3000
+# Grafana:       http://localhost:3001
 # Prometheus:    http://localhost:9090
+# AlertManager:  http://localhost:9093
 # cAdvisor:      http://localhost:8080
 ```
 
-Default Grafana credentials: `admin` / `changeme-please` (configure in `.env`)
+Default Grafana credentials: `admin` / (set in `.env` - use Ansible Vault in production)
 
 ## Architecture
 
@@ -147,7 +158,53 @@ curl -X POST http://localhost:9090/-/reload
 
 ### Setting Up Alerts
 
-Prometheus alert rules can be added in `prometheus/alert_rules.yml`:
+**Production-Ready Alert Rules Included:**
+
+The monitoring stack comes with 15+ pre-configured alert rules in `prometheus/rules/alerts.yml`:
+
+**System Alerts:**
+
+- `NodeExporterDown` - Node exporter service failure (critical)
+- `HighCPUUsage` - CPU usage >80% for 5 minutes (warning)
+- `HighMemoryUsage` - Memory usage >90% for 5 minutes (critical)
+- `DiskSpaceLow` - Disk space <15% (critical)
+- `DiskSpaceWarning` - Disk space <25% (warning)
+
+**Container Alerts:**
+
+- `ContainerDown` - cAdvisor monitoring failure (critical)
+- `ContainerHighMemory` - Container using >90% of memory limit (warning)
+
+**Service Alerts:**
+
+- `PrometheusDown` - Prometheus self-monitoring failure (critical)
+- `PrometheusTargetDown` - Any scrape target unreachable (warning)
+- `GrafanaDown` - Grafana dashboard unavailable (warning)
+
+Each alert includes:
+
+- ✅ **Runbook commands** for quick troubleshooting
+- ✅ **Severity labels** (critical/warning)
+- ✅ **Clear descriptions** of the issue
+- ✅ **Threshold tuning** based on best practices
+
+**AlertManager Configuration:**
+
+Configure Slack notifications in `alertmanager/alertmanager.yml`:
+
+```yaml
+receivers:
+  - name: 'slack-critical'
+    slack_configs:
+      - api_url: 'YOUR_SLACK_WEBHOOK_URL'
+        channel: '#homelab-critical'
+```
+
+See `docker/monitoring-stack/alertmanager/README.md` for complete setup guide.
+
+**Custom Alert Rules:**
+
+Add your own rules in `prometheus/alert_rules.yml`:
 
 ```yaml
 groups:
@@ -324,8 +381,12 @@ See the [monitoring role on GitHub](https://github.com/iso-st3ph/homelab-devops/
 
 ## Next Steps
 
-- [ ] Import pre-built Grafana dashboards
-- [ ] Set up Prometheus alert rules
-- [x] Deploy node_exporter to remote hosts via Ansible ✅
+- [x] **Production AlertManager with Slack** ✅
+- [x] **15+ Alert rules with runbooks** ✅
+- [x] **Deploy node_exporter to remote hosts via Ansible** ✅
+- [x] **Secrets management with Ansible Vault** ✅
+- [x] **Automated backup/restore scripts** ✅
+- [ ] Import pre-built Grafana dashboards (Node Exporter Full, Docker)
 - [ ] Configure Nginx reverse proxy with SSL
-- [ ] Set up Alertmanager for notifications
+- [ ] Log aggregation with Loki + Promtail
+- [ ] Distributed tracing with Tempo

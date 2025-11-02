@@ -26,27 +26,32 @@ flowchart TD
 
 ## 📁 Projects
 
-- 🏗️ [Terraform Infrastructure](terraform.md) - AWS EC2 provisioning with security best practices
-- 🤖 [Ansible Automation](ansible.md) - Configuration management and monitoring deployment
-- � [Monitoring Stack](monitoring.md) - Prometheus + Grafana observability platform
-- �🐳 [Docker / Reverse Proxy](docker.md) - Containerized services with Nginx
-- 🛰️ End-to-end DevOps CI/CD Lab
+- 🏗️ [Terraform Infrastructure](terraform.md) - Multi-environment AWS provisioning (dev/staging/prod)
+- 🤖 [Ansible Automation](ansible.md) - Configuration management with Vault secrets
+- 📊 [Monitoring Stack](monitoring.md) - Prometheus + Grafana + AlertManager with Slack alerts
+-  [Docker / Reverse Proxy](docker.md) - Containerized services with Nginx
+- � **NEW: Secrets Management** - Ansible Vault encryption for credentials
+- 🌍 **NEW: Multi-Environment** - Terraform workspaces for dev/staging/prod
+- 🚨 **NEW: Production Alerting** - 15+ alert rules with runbooks
+- 💾 **NEW: Backup & DR** - Automated backup/restore scripts
 
 ---
 
 ## 🎯 About This Lab
 
-This homelab is built to simulate real-world DevOps:
+This homelab demonstrates production-ready DevOps practices:
 
-✅ Git-based workflows  
-✅ CI pipelines & automated linting  
-✅ Terraform infrastructure provisioning  
-✅ Ansible configuration management  
-✅ Prometheus + Grafana monitoring & observability  
-✅ Docker applications behind a reverse proxy  
-✅ Security hardening (SELinux, systemd, firewall automation)
+✅ Git-based workflows with CI/CD  
+✅ Infrastructure as Code (Terraform with multi-environment)  
+✅ Configuration management (Ansible with encrypted secrets)  
+✅ Full observability stack (Prometheus + Grafana + AlertManager)  
+✅ Production alerting with Slack integration  
+✅ Docker containerization with reverse proxy  
+✅ Security hardening (SELinux, systemd, Ansible Vault)  
+✅ Automated testing & validation  
+✅ Disaster recovery (backup/restore automation)
 
-> Goal: Operate like a production infrastructure in a home lab environment.
+> **Goal**: Operate like production infrastructure in a homelab, demonstrating enterprise-grade DevOps skills.
 
 ---
 
