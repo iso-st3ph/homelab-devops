@@ -55,4 +55,5 @@ nav:
   - Terraform: terraform.md
   - Ansible: ansible.md
   - Docker / Reverse Proxy: docker.md
+  - Monitoring: monitoring.md
   - Hire Me: hire-me.md

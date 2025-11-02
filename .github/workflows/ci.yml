@@ -36,3 +36,11 @@ jobs:
         run: terraform init -input=false
       - name: Terraform validate
         run: terraform validate -no-color
+
+  docker_compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate monitoring docker-compose
+        run: |
+          docker compose -f docker/monitoring-stack/docker-compose.yml config >/dev/null
