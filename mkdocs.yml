@@ -57,6 +57,7 @@ nav:
   - Kubernetes (K3s): kubernetes.md
   - GitOps (ArgoCD): gitops.md
   - Jenkins CI/CD: jenkins.md
+  - Packer Images: packer.md
   - Docker / Reverse Proxy: docker.md
   - Monitoring: monitoring.md
   - Grafana Dashboards: grafana-dashboards.md

@@ -1,0 +1,14 @@
+# Packer Variables for AWS Ubuntu Build
+# Copy to variables.auto.pkrvars.hcl and customize
+
+ami_name        = "homelab-ubuntu-22.04"
+ami_description = "Ubuntu 22.04 LTS with security hardening, monitoring tools, and Docker"
+region          = "us-east-1"
+instance_type   = "t3.micro"
+
+# Optional: Specify VPC and Subnet for build
+# vpc_id    = "vpc-xxxxx"
+# subnet_id = "subnet-xxxxx"
+
+# SSH Configuration
+ssh_username = "ubuntu"

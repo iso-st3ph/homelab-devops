@@ -119,3 +119,19 @@ jenkins-app:     ## Deploy Jenkins via ArgoCD
 	@export KUBECONFIG=~/.kube/config && \
 	kubectl apply -f argocd/jenkins-app.yaml && \
 	echo "✅ Jenkins ArgoCD Application created"
+
+# Packer Image Builds
+.PHONY: packer-init packer-validate packer-build packer-clean
+packer-init:     ## Initialize Packer plugins
+	cd packer && packer init aws-ubuntu.pkr.hcl
+
+packer-validate: ## Validate Packer template
+	cd packer && packer validate -var-file=variables.pkrvars.hcl.example aws-ubuntu.pkr.hcl
+
+packer-build:    ## Build AMI with Packer (requires AWS credentials)
+	@echo "⚠️  This will create an AMI in AWS and incur costs"
+	@read -p "Continue? [y/N]: " confirm && [ "$$confirm" = "y" ] || exit 1
+	cd packer && packer build -var-file=variables.auto.pkrvars.hcl aws-ubuntu.pkr.hcl
+
+packer-clean:    ## Clean Packer build artifacts
+	cd packer && rm -rf packer_cache/ manifest.json crash.log

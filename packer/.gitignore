@@ -1,0 +1,11 @@
+# Packer
+*.auto.pkrvars.hcl
+variables.auto.pkrvars.hcl
+manifest.json
+packer_cache/
+crash.log
+
+# Build artifacts
+*.box
+*.tar.gz
+output-*/
