@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/README-site-notes/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/ansible/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/architecture/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/docker/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/hire-me/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
+    </url>
+    <url>
+         <loc>https://iso-st3ph.github.io/homelab-devops/monitoring/</loc>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/pipelines/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/projects/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/reverse-proxy/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
     <url>
          <loc>https://iso-st3ph.github.io/homelab-devops/terraform/</loc>
-         <lastmod>2025-11-01</lastmod>
+         <lastmod>2025-11-02</lastmod>
     </url>
 </urlset>
