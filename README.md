@@ -19,10 +19,13 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 - ✅ **Infrastructure as Code** (Terraform modules with testing)
 - ✅ **Configuration Management** (Ansible roles and playbooks)
 - ✅ **Production Observability** (Prometheus + Grafana + AlertManager + Slack)
+- ✅ **Full Observability Stack** (Metrics + Logs + Traces)
 - ✅ **Container Orchestration** (Docker Compose services)
 - ✅ **CI/CD Automation** (GitHub Actions + pre-commit hooks)
 - ✅ **Container Security** (Trivy vulnerability scanning in CI/CD)
 - ✅ **Dashboard Automation** (4 pre-built Grafana dashboards auto-provisioned)
+- ✅ **Log Aggregation** (Loki + Promtail with 30-day retention)
+- ✅ **Distributed Tracing** (Tempo with trace correlation)
 - ✅ **Secrets Management** (Ansible Vault encryption)
 - ✅ **Multi-Environment Management** (dev/staging/prod with Terraform workspaces)
 - ✅ **Security Hardening** (SELinux, systemd protections, firewall automation)
@@ -38,6 +41,8 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 | **Infrastructure** | Terraform, AWS EC2, Proxmox VMs |
 | **Configuration** | Ansible, Ansible Vault, systemd, firewalld/ufw |
 | **Monitoring** | Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor |
+| **Logging** | Loki, Promtail (30-day retention) |
+| **Tracing** | Tempo (OTLP receivers, trace correlation) |
 | **Containers** | Docker, Docker Compose, Nginx |
 | **CI/CD** | GitHub Actions, pre-commit, TFLint, Checkov, yamllint |
 | **Security** | Trivy, Ansible Vault, SELinux, systemd hardening |
@@ -275,7 +280,7 @@ ansible-playbook playbooks/*.yml --syntax-check
 
 ---
 
-## 📈 Metrics & Monitoring
+## � Metrics & Monitoring
 
 The monitoring stack collects:
 
@@ -283,6 +288,8 @@ The monitoring stack collects:
 - **Container metrics**: Docker resource usage (via cAdvisor)
 - **Service metrics**: Prometheus self-monitoring
 - **Custom metrics**: Extensible with additional exporters
+- **Logs**: Centralized log aggregation (via Loki + Promtail)
+- **Traces**: Distributed tracing (via Tempo with OTLP)
 
 **Auto-provisioned dashboards:**
 - Node Exporter Full (ID: 1860) - Complete system monitoring
@@ -294,6 +301,12 @@ The monitoring stack collects:
 - Trivy vulnerability scanner in CI/CD pipeline
 - Scans 5 container images: Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor
 - Local scanning automation with `make security-scan`
+
+**Observability Features:**
+- 📈 **Metrics**: 15-day retention, auto-discovery, alerting rules
+- 📝 **Logs**: 30-day retention, Docker container logs, query correlation
+- 🔍 **Traces**: 30-day retention, service graphs, span metrics
+- 🔗 **Correlation**: Unified view with trace→logs, trace→metrics linking
 
 ---
 
@@ -377,10 +390,15 @@ make serve
   - Docker & System Monitoring (179) - Container overview
   - cAdvisor Prometheus (893) - Deep container metrics
   - Node Exporter Quickstart (15172) - Simplified views
-
-### 🚧 In Progress (Phase 2 - Cloud Native)
-- [ ] Log aggregation (Loki + Promtail)
-- [ ] Distributed tracing (Tempo/Jaeger)
+- [x] **Log aggregation (Loki + Promtail)**
+  - Centralized log storage with 30-day retention
+  - Docker container log collection
+  - Grafana datasource with log-to-trace correlation
+- [x] **Distributed tracing (Tempo)**
+  - OTLP receiver for traces (gRPC + HTTP)
+  - Trace-to-logs and trace-to-metrics correlation
+  - Service graphs and span metrics generation
+  - 30-day trace retention with compaction
 
 ### 📋 Planned (Phase 3 - Advanced)
 - [ ] Kubernetes/K3s cluster deployment

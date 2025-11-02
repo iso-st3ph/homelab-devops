@@ -46,10 +46,12 @@ This homelab demonstrates production-ready DevOps practices:
 ✅ Git-based workflows with CI/CD  
 ✅ Infrastructure as Code (Terraform with multi-environment)  
 ✅ Configuration management (Ansible with encrypted secrets)  
-✅ Full observability stack (Prometheus + Grafana + AlertManager)  
+✅ Full observability stack (Metrics + Logs + Traces)  
 ✅ Production alerting with Slack integration  
 ✅ Container security scanning (Trivy in CI/CD)  
 ✅ Auto-provisioned Grafana dashboards (4 production-ready)  
+✅ Centralized logging (Loki + Promtail, 30-day retention)  
+✅ Distributed tracing (Tempo with trace correlation)  
 ✅ Docker containerization with reverse proxy  
 ✅ Security hardening (SELinux, systemd, Ansible Vault)  
 ✅ Automated testing & validation  
@@ -90,6 +92,8 @@ terraform init && terraform plan
 | **Infrastructure** | Terraform, AWS EC2, Proxmox |
 | **Configuration** | Ansible, systemd |
 | **Monitoring** | Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor |
+| **Logging** | Loki, Promtail |
+| **Tracing** | Tempo (OTLP, trace correlation) |
 | **Security** | Trivy, Ansible Vault, SELinux |
 | **Containers** | Docker, Docker Compose |
 | **CI/CD** | GitHub Actions, Jenkins, pre-commit |
