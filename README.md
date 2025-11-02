@@ -21,6 +21,7 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 - ✅ **Production Observability** (Prometheus + Grafana + AlertManager + Slack)
 - ✅ **Full Observability Stack** (Metrics + Logs + Traces)
 - ✅ **Kubernetes Orchestration** (K3s cluster with monitoring stack)
+- ✅ **GitOps Methodology** (ArgoCD declarative deployment and sync)
 - ✅ **Container Orchestration** (Docker Compose services)
 - ✅ **CI/CD Automation** (GitHub Actions + pre-commit hooks)
 - ✅ **Container Security** (Trivy vulnerability scanning in CI/CD)
@@ -45,6 +46,7 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 | **Logging** | Loki, Promtail (30-day retention) |
 | **Tracing** | Tempo (OTLP receivers, trace correlation) |
 | **Orchestration** | Kubernetes (K3s), Docker, Docker Compose |
+| **GitOps** | ArgoCD (declarative deployment, auto-sync, self-heal) |
 | **Containers** | Docker, Docker Compose, Nginx |
 | **CI/CD** | GitHub Actions, pre-commit, TFLint, Checkov, yamllint |
 | **Security** | Trivy, Ansible Vault, SELinux, systemd hardening |
@@ -415,12 +417,23 @@ make serve
   - Health checks, resource limits, and NodePort services
   - Deployment automation with kubectl manifests
 
+- [x] **GitOps with ArgoCD**
+  - ArgoCD v2.x installed on K3s cluster
+  - Declarative application management from Git repository
+  - Automated sync with self-heal and prune capabilities
+  - AppProject RBAC with admin/developer roles
+  - Managing monitoring stack deployments via GitOps
+  - 3-minute auto-sync polling with retry logic
+  - Sync waves and hooks for controlled deployments
+  - Complete audit trail via Git history
+  - Comprehensive documentation and operational guides
+
 ### 📋 Planned (Phase 3 - Advanced)
-- [ ] GitOps with ArgoCD/Flux
-- [ ] Service mesh (Istio/Linkerd)
-- [ ] Jenkins integration
-- [ ] Packer image builds
+
+- [ ] Jenkins integration on Kubernetes
+- [ ] Packer image builds with automation
 - [ ] HashiCorp Vault integration
+- [ ] Service mesh (deferred - K8s v1.33 compatibility)
 
 ---
 
