@@ -115,7 +115,6 @@
     - ansible_facts['os_family'] == 'Debian'
   failed_when: false
 
-# checkov:skip=CKV2_ANSIBLE_1:HTTP is acceptable for localhost health checks
 - name: Verify node_exporter is responding
   ansible.builtin.uri:
     url: "http://localhost:{{ node_exporter_port }}/metrics"
