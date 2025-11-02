@@ -26,17 +26,16 @@ flowchart TD
 
 ## 📁 Projects
 
-- 🏗️ [Terraform Infrastructure](terraform.md) - Multi-environment AWS provisioning (dev/staging/prod)
+- 🏗️ [Terraform Infrastructure](terraform.md) - Multi-environment AWS provisioning with testing
 - 🤖 [Ansible Automation](ansible.md) - Configuration management with Vault secrets
-- ☸️ **Kubernetes (K3s)** - Production monitoring stack on Kubernetes cluster
-- 📊 [Monitoring Stack](monitoring.md) - Prometheus + Grafana + AlertManager with Slack alerts
+- ☸️ [Kubernetes (K3s)](kubernetes.md) - Production monitoring stack on K8s cluster
+- 🔄 [GitOps (ArgoCD)](gitops.md) - Declarative deployment with auto-sync and self-heal
+- 🚀 [Jenkins CI/CD](jenkins.md) - Kubernetes-based with dynamic agent provisioning
+- 📦 [Packer Images](packer.md) - Automated AMI builds with security hardening
+- 📊 [Monitoring Stack](monitoring.md) - Prometheus + Grafana + Loki + Tempo + AlertManager
 - 📈 [Grafana Dashboards](grafana-dashboards.md) - 4 production dashboards auto-provisioned
 - 🔒 [Security Scanning](security.md) - Trivy container vulnerability scanning
 - 🐳 [Docker / Reverse Proxy](docker.md) - Containerized services with Nginx
-- 🔐 **Secrets Management** - Ansible Vault encryption for credentials
-- 🌍 **Multi-Environment** - Terraform workspaces for dev/staging/prod
-- 🚨 **Production Alerting** - 15+ alert rules with runbooks
-- 💾 **Backup & DR** - Automated backup/restore scripts
 
 ---
 
@@ -48,6 +47,9 @@ This homelab demonstrates production-ready DevOps practices:
 ✅ Infrastructure as Code (Terraform with multi-environment)  
 ✅ Configuration management (Ansible with encrypted secrets)  
 ✅ Kubernetes orchestration (K3s with production workloads)  
+✅ GitOps deployment (ArgoCD managing 2 applications)  
+✅ CI/CD pipelines (Jenkins on K8s with dynamic agents)  
+✅ Immutable infrastructure (Packer AMI builds with hardening)  
 ✅ Full observability stack (Metrics + Logs + Traces)  
 ✅ Production alerting with Slack integration  
 ✅ Container security scanning (Trivy in CI/CD)  
@@ -55,7 +57,7 @@ This homelab demonstrates production-ready DevOps practices:
 ✅ Centralized logging (Loki + Promtail, 30-day retention)  
 ✅ Distributed tracing (Tempo with trace correlation)  
 ✅ Docker containerization with reverse proxy  
-✅ Security hardening (SELinux, systemd, Ansible Vault)  
+✅ Security hardening (SSH, firewall, IDS, antivirus)  
 ✅ Automated testing & validation  
 ✅ Disaster recovery (backup/restore automation)
 
@@ -93,7 +95,10 @@ terraform init && terraform plan
 |-----------|------------|
 | **Infrastructure** | Terraform, AWS EC2, Proxmox |
 | **Configuration** | Ansible, systemd |
-| **Orchestration** | Kubernetes (K3s) |
+| **Orchestration** | Kubernetes (K3s), Docker Compose |
+| **GitOps** | ArgoCD (declarative deployment, auto-sync) |
+| **CI/CD** | Jenkins (K8s dynamic agents), GitHub Actions |
+| **Image Automation** | Packer (hardened AMI builds) |
 | **Monitoring** | Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor |
 | **Logging** | Loki, Promtail |
 | **Tracing** | Tempo (OTLP, trace correlation) |
