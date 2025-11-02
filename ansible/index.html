@@ -424,6 +424,57 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#monitoring-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Monitoring Role
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Monitoring Role">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-with-prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Prometheus
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Security Role
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -598,6 +649,44 @@
 <span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
 <span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_os_family == &quot;Debian&quot;</span>
 </code></pre></div>
+<hr />
+<h2 id="monitoring-role">📊 Monitoring Role<a class="headerlink" href="#monitoring-role" title="Permanent link">&para;</a></h2>
+<p>Automates deployment of Prometheus Node Exporter to infrastructure for metrics collection.</p>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Installs Node Exporter as systemd service</li>
+<li>✅ Automatic firewall configuration</li>
+<li>✅ Security hardening (unprivileged user, systemd protections)</li>
+<li>✅ Version management &amp; idempotent updates</li>
+<li>✅ Health check verification</li>
+</ul>
+<h3 id="quick-deploy">Quick Deploy<a class="headerlink" href="#quick-deploy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deploy to all hosts</span>
+<span class="nb">cd</span><span class="w"> </span>ansible
+ansible-playbook<span class="w"> </span>playbooks/deploy-monitoring.yml
+
+<span class="c1"># Deploy to specific group</span>
+ansible-playbook<span class="w"> </span>playbooks/deploy-monitoring.yml<span class="w"> </span>--limit<span class="w"> </span>monitoring
+
+<span class="c1"># Verify installation</span>
+ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>uri<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;url=http://localhost:9100/metrics status_code=200&quot;</span>
+</code></pre></div>
+<h3 id="integration-with-prometheus">Integration with Prometheus<a class="headerlink" href="#integration-with-prometheus" title="Permanent link">&para;</a></h3>
+<p>After deployment, add hosts to <code>docker/monitoring-stack/prometheus/prometheus.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;node_exporter_homelab&#39;</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;server1.local:9100&#39;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;server2.local:9100&#39;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;server3.local:9100&#39;</span>
+<span class="w">        </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;homelab&#39;</span>
+</code></pre></div>
+<p>See the <a href="https://github.com/iso-st3ph/homelab-devops/tree/main/ansible/roles/monitoring">monitoring role on GitHub</a> for complete documentation.</p>
+<hr />
+<h2 id="security-role">🔐 Security Role<a class="headerlink" href="#security-role" title="Permanent link">&para;</a></h2>
+<p>Coming soon: Automated security hardening, SSH configuration, and fail2ban setup.</p>
 
 
 

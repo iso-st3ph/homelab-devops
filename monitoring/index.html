@@ -670,6 +670,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#deploying-node-exporter-to-remote-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying Node Exporter to Remote Hosts
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -975,6 +984,22 @@ sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 <span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;nginx-exporter:9113&quot;</span><span class="p p-Indicator">]</span>
 </code></pre></div></p>
+<h3 id="deploying-node-exporter-to-remote-hosts">Deploying Node Exporter to Remote Hosts<a class="headerlink" href="#deploying-node-exporter-to-remote-hosts" title="Permanent link">&para;</a></h3>
+<p>Use the included Ansible role to automatically deploy node_exporter:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deploy to all managed hosts</span>
+<span class="nb">cd</span><span class="w"> </span>ansible
+ansible-playbook<span class="w"> </span>playbooks/deploy-monitoring.yml
+
+<span class="c1"># Generate Prometheus targets from inventory</span>
+python3<span class="w"> </span>../scripts/generate_prometheus_targets.py<span class="w"> </span>inventories/hosts
+</code></pre></div>
+<p>This installs node_exporter as a systemd service with:</p>
+<ul>
+<li>✅ Automatic firewall configuration</li>
+<li>✅ Security hardening</li>
+<li>✅ Health check verification</li>
+</ul>
+<p>See the <a href="https://github.com/iso-st3ph/homelab-devops/tree/main/ansible/roles/monitoring">monitoring role on GitHub</a> for details.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://prometheus.io/docs/">Prometheus Documentation</a></li>
@@ -987,7 +1012,7 @@ sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 <ul class="task-list">
 <li class="task-list-item"><input type="checkbox" disabled/> Import pre-built Grafana dashboards</li>
 <li class="task-list-item"><input type="checkbox" disabled/> Set up Prometheus alert rules</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Deploy node_exporter to remote hosts via Ansible</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> Deploy node_exporter to remote hosts via Ansible ✅</li>
 <li class="task-list-item"><input type="checkbox" disabled/> Configure Nginx reverse proxy with SSL</li>
 <li class="task-list-item"><input type="checkbox" disabled/> Set up Alertmanager for notifications</li>
 </ul>
