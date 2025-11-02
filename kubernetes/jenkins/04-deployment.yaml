@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  namespace: jenkins
+  labels:
+    app: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      serviceAccountName: jenkins
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins:lts
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: JAVA_OPTS
+              value: "-Djenkins.install.runSetupWizard=false -Dhudson.security.csrf.DefaultCrumbIssuer.EXCLUDE_SESSION_ID=true"
+            - name: CASC_JENKINS_CONFIG
+              value: /var/jenkins_config/jenkins.yaml
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: jnlp
+              containerPort: 50000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /login
+              port: 8080
+            initialDelaySeconds: 90
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 2000m
+              memory: 3Gi
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/jenkins_home
+            - name: jenkins-config
+              mountPath: /var/jenkins_config
+              readOnly: true
+      volumes:
+        - name: jenkins-home
+          persistentVolumeClaim:
+            claimName: jenkins-home
+        - name: jenkins-config
+          configMap:
+            name: jenkins-config

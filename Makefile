@@ -85,3 +85,37 @@ argocd-ui:       ## Get ArgoCD UI access details
 	export KUBECONFIG=~/.kube/config && \
 	kubectl get secret argocd-initial-admin-secret -n argocd \
 	-o jsonpath="{.data.password}" | base64 -d && echo
+
+# Jenkins CI/CD
+.PHONY: jenkins-deploy jenkins-status jenkins-logs jenkins-ui jenkins-app
+jenkins-deploy:  ## Deploy Jenkins to Kubernetes
+	cd kubernetes/jenkins && ./deploy.sh
+
+jenkins-status:  ## Check Jenkins deployment status
+	@export KUBECONFIG=~/.kube/config && \
+	echo "📊 Jenkins Pods:" && \
+	kubectl get pods -n jenkins && \
+	echo "" && \
+	echo "🌐 Services:" && \
+	kubectl get svc -n jenkins && \
+	echo "" && \
+	echo "💾 PersistentVolumeClaims:" && \
+	kubectl get pvc -n jenkins
+
+jenkins-logs:    ## View Jenkins controller logs
+	@export KUBECONFIG=~/.kube/config && \
+	kubectl logs -n jenkins -l app=jenkins -f
+
+jenkins-ui:      ## Get Jenkins UI access details
+	@echo "🌐 Jenkins UI Access:" && \
+	echo "  URL: http://localhost:30808" && \
+	echo "  Username: admin" && \
+	echo "  Note: Using JCasC - setup wizard disabled" && \
+	echo "" && \
+	echo "💡 Jenkins is configured via Configuration as Code (JCasC)" && \
+	echo "   See kubernetes/jenkins/03-configmap.yaml for configuration"
+
+jenkins-app:     ## Deploy Jenkins via ArgoCD
+	@export KUBECONFIG=~/.kube/config && \
+	kubectl apply -f argocd/jenkins-app.yaml && \
+	echo "✅ Jenkins ArgoCD Application created"

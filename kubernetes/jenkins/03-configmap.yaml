@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-config
+  namespace: jenkins
+data:
+  # Jenkins Configuration as Code (JCasC)
+  jenkins.yaml: |
+    jenkins:
+      systemMessage: "Jenkins - DevOps Portfolio CI/CD Server"
+      numExecutors: 0
+      mode: NORMAL
+      securityRealm:
+        local:
+          allowsSignup: false
+      authorizationStrategy:
+        loggedInUsersCanDoAnything:
+          allowAnonymousRead: false
+      clouds:
+        - kubernetes:
+            name: "kubernetes"
+            serverUrl: "https://kubernetes.default"
+            namespace: "jenkins"
+            jenkinsUrl: "http://jenkins:8080"
+            jenkinsTunnel: "jenkins-agent:50000"
+            containerCapStr: "10"
+            connectTimeout: 5
+            readTimeout: 15
+            retentionTimeout: 5
+            templates:
+              - name: "jenkins-agent"
+                namespace: "jenkins"
+                label: "jenkins-agent"
+                nodeUsageMode: NORMAL
+                containers:
+                  - name: "jnlp"
+                    image: "jenkins/inbound-agent:latest"
+                    workingDir: "/home/jenkins/agent"
+                    command: ""
+                    args: ""
+                    ttyEnabled: true
+                    resourceRequestCpu: "500m"
+                    resourceRequestMemory: "512Mi"
+                    resourceLimitCpu: "1000m"
+                    resourceLimitMemory: "1Gi"
+    unclassified:
+      location:
+        url: "http://jenkins.homelab.local:30808"
