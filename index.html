@@ -619,10 +619,12 @@ Built with <strong>Terraform · Ansible · Docker · Prometheus · Grafana · Gi
 <p>✅ Git-based workflows with CI/CD<br />
 ✅ Infrastructure as Code (Terraform with multi-environment)<br />
 ✅ Configuration management (Ansible with encrypted secrets)<br />
-✅ Full observability stack (Prometheus + Grafana + AlertManager)<br />
+✅ Full observability stack (Metrics + Logs + Traces)<br />
 ✅ Production alerting with Slack integration<br />
 ✅ Container security scanning (Trivy in CI/CD)<br />
 ✅ Auto-provisioned Grafana dashboards (4 production-ready)<br />
+✅ Centralized logging (Loki + Promtail, 30-day retention)<br />
+✅ Distributed tracing (Tempo with trace correlation)<br />
 ✅ Docker containerization with reverse proxy<br />
 ✅ Security hardening (SELinux, systemd, Ansible Vault)<br />
 ✅ Automated testing &amp; validation<br />
@@ -667,6 +669,14 @@ terraform<span class="w"> </span>init<span class="w"> </span><span class="o">&am
 <tr>
 <td><strong>Monitoring</strong></td>
 <td>Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor</td>
+</tr>
+<tr>
+<td><strong>Logging</strong></td>
+<td>Loki, Promtail</td>
+</tr>
+<tr>
+<td><strong>Tracing</strong></td>
+<td>Tempo (OTLP, trace correlation)</td>
 </tr>
 <tr>
 <td><strong>Security</strong></td>
