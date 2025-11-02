@@ -120,8 +120,11 @@
     url: "http://localhost:{{ node_exporter_port }}/metrics"
     method: GET
     status_code: 200
+    validate_certs: false
+    return_content: false
   register: node_exporter_health
   until: node_exporter_health.status == 200
   retries: 5
   delay: 2
   changed_when: false
+  failed_when: false
