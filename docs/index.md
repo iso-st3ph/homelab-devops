@@ -29,11 +29,13 @@ flowchart TD
 - 🏗️ [Terraform Infrastructure](terraform.md) - Multi-environment AWS provisioning (dev/staging/prod)
 - 🤖 [Ansible Automation](ansible.md) - Configuration management with Vault secrets
 - 📊 [Monitoring Stack](monitoring.md) - Prometheus + Grafana + AlertManager with Slack alerts
--  [Docker / Reverse Proxy](docker.md) - Containerized services with Nginx
-- � **NEW: Secrets Management** - Ansible Vault encryption for credentials
-- 🌍 **NEW: Multi-Environment** - Terraform workspaces for dev/staging/prod
-- 🚨 **NEW: Production Alerting** - 15+ alert rules with runbooks
-- 💾 **NEW: Backup & DR** - Automated backup/restore scripts
+- 📈 [Grafana Dashboards](grafana-dashboards.md) - 4 production dashboards auto-provisioned
+- 🔒 [Security Scanning](security.md) - Trivy container vulnerability scanning
+- 🐳 [Docker / Reverse Proxy](docker.md) - Containerized services with Nginx
+- 🔐 **Secrets Management** - Ansible Vault encryption for credentials
+- 🌍 **Multi-Environment** - Terraform workspaces for dev/staging/prod
+- 🚨 **Production Alerting** - 15+ alert rules with runbooks
+- 💾 **Backup & DR** - Automated backup/restore scripts
 
 ---
 
@@ -46,6 +48,8 @@ This homelab demonstrates production-ready DevOps practices:
 ✅ Configuration management (Ansible with encrypted secrets)  
 ✅ Full observability stack (Prometheus + Grafana + AlertManager)  
 ✅ Production alerting with Slack integration  
+✅ Container security scanning (Trivy in CI/CD)  
+✅ Auto-provisioned Grafana dashboards (4 production-ready)  
 ✅ Docker containerization with reverse proxy  
 ✅ Security hardening (SELinux, systemd, Ansible Vault)  
 ✅ Automated testing & validation  
@@ -85,7 +89,8 @@ terraform init && terraform plan
 |-----------|------------|
 | **Infrastructure** | Terraform, AWS EC2, Proxmox |
 | **Configuration** | Ansible, systemd |
-| **Monitoring** | Prometheus, Grafana, Node Exporter, cAdvisor |
+| **Monitoring** | Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor |
+| **Security** | Trivy, Ansible Vault, SELinux |
 | **Containers** | Docker, Docker Compose |
 | **CI/CD** | GitHub Actions, Jenkins, pre-commit |
 | **Documentation** | MkDocs Material |

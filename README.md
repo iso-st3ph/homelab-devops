@@ -21,6 +21,8 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 - ✅ **Production Observability** (Prometheus + Grafana + AlertManager + Slack)
 - ✅ **Container Orchestration** (Docker Compose services)
 - ✅ **CI/CD Automation** (GitHub Actions + pre-commit hooks)
+- ✅ **Container Security** (Trivy vulnerability scanning in CI/CD)
+- ✅ **Dashboard Automation** (4 pre-built Grafana dashboards auto-provisioned)
 - ✅ **Secrets Management** (Ansible Vault encryption)
 - ✅ **Multi-Environment Management** (dev/staging/prod with Terraform workspaces)
 - ✅ **Security Hardening** (SELinux, systemd protections, firewall automation)
@@ -38,9 +40,9 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 | **Monitoring** | Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor |
 | **Containers** | Docker, Docker Compose, Nginx |
 | **CI/CD** | GitHub Actions, pre-commit, TFLint, Checkov, yamllint |
+| **Security** | Trivy, Ansible Vault, SELinux, systemd hardening |
 | **Documentation** | MkDocs Material, Mermaid diagrams |
 | **Languages** | Python, Bash, YAML, HCL |
-| **Security** | Ansible Vault, SELinux, systemd hardening |
 
 ---
 
@@ -282,10 +284,16 @@ The monitoring stack collects:
 - **Service metrics**: Prometheus self-monitoring
 - **Custom metrics**: Extensible with additional exporters
 
-**Pre-configured dashboards:**
-- Node Exporter Full (ID: 1860)
-- Docker & System Monitoring (ID: 179)
-- cAdvisor (ID: 893)
+**Auto-provisioned dashboards:**
+- Node Exporter Full (ID: 1860) - Complete system monitoring
+- Docker & System Monitoring (ID: 179) - Container resource overview
+- cAdvisor Prometheus (ID: 893) - Deep container diagnostics
+- Node Exporter Quickstart (ID: 15172) - Simplified health views
+
+**Security scanning:**
+- Trivy vulnerability scanner in CI/CD pipeline
+- Scans 5 container images: Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor
+- Local scanning automation with `make security-scan`
 
 ---
 
@@ -362,9 +370,15 @@ make serve
 - [x] **Automated backup/restore scripts**
 - [x] **Security hardening (SELinux, firewall, systemd)**
 
+### ✅ Completed (Phase 2 - Cloud Native)
+- [x] **Container security scanning (Trivy in CI/CD)**
+- [x] **Pre-built Grafana dashboards (4 production dashboards)**
+  - Node Exporter Full (1860) - Complete system monitoring
+  - Docker & System Monitoring (179) - Container overview
+  - cAdvisor Prometheus (893) - Deep container metrics
+  - Node Exporter Quickstart (15172) - Simplified views
+
 ### 🚧 In Progress (Phase 2 - Cloud Native)
-- [ ] Pre-built Grafana dashboards (Node Exporter Full, Docker)
-- [ ] Container security scanning (Trivy in CI/CD)
 - [ ] Log aggregation (Loki + Promtail)
 - [ ] Distributed tracing (Tempo/Jaeger)
 
