@@ -418,9 +418,41 @@
 <ul>
 <li><strong>Terraform Module:</strong> <code>terraform/modules/ec2_minimal/</code></li>
 <li><strong>AWS Example:</strong> <code>terraform/aws-ec2/</code></li>
-<li><strong>Ansible Role:</strong> <code>ansible/roles/secure/</code></li>
+<li><strong>Ansible Monitoring Role:</strong> <code>ansible/roles/monitoring/</code></li>
+<li><strong>Ansible Security Role:</strong> <code>ansible/roles/secure/</code></li>
+<li><strong>Monitoring Stack:</strong> <code>docker/monitoring-stack/</code></li>
 <li><strong>Reverse Proxy Demo:</strong> <code>docker/reverse-proxy/</code></li>
 </ul>
+<hr />
+<h2 id="monitoring-stack-prometheus-grafana">Monitoring Stack: Prometheus + Grafana<a class="headerlink" href="#monitoring-stack-prometheus-grafana" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">What it does</p>
+<ul>
+<li>Full observability stack with Prometheus, Grafana, Node Exporter, and cAdvisor</li>
+<li>Auto-provisioned Grafana datasources and dashboards</li>
+<li>SELinux/Fedora compatible configurations</li>
+<li>Makefile commands for easy management</li>
+</ul>
+</div>
+<p><strong>Try it</strong>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>mon-up
+<span class="c1"># Access Grafana at http://localhost:3001</span>
+</code></pre></div></p>
+<hr />
+<h2 id="ansible-monitoring-role">Ansible: Monitoring Role<a class="headerlink" href="#ansible-monitoring-role" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">What it does</p>
+<ul>
+<li>Deploys Prometheus Node Exporter to remote hosts</li>
+<li>Installs as systemd service with security hardening</li>
+<li>Auto-configures firewall (firewalld/ufw)</li>
+<li>Idempotent deployment with version management</li>
+</ul>
+</div>
+<p><strong>Try it</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>ansible
+ansible-playbook<span class="w"> </span>playbooks/deploy-monitoring.yml
+</code></pre></div></p>
 <hr />
 <h2 id="terraform-ec2-minimal">Terraform: EC2 minimal<a class="headerlink" href="#terraform-ec2-minimal" title="Permanent link">&para;</a></h2>
 <div class="admonition abstract">
@@ -431,10 +463,11 @@
 <li>Outputs public IP / instance ID</li>
 </ul>
 </div>
-<p><strong>Try it</strong></p>
-<p>cd terraform/aws-ec2
-terraform init -backend=false
-terraform plan -var key_name=MY_KEY</p>
+<p><strong>Try it</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>terraform/aws-ec2
+terraform<span class="w"> </span>init<span class="w"> </span>-backend<span class="o">=</span><span class="nb">false</span>
+terraform<span class="w"> </span>plan<span class="w"> </span>-var<span class="w"> </span><span class="nv">key_name</span><span class="o">=</span>MY_KEY
+</code></pre></div></p>
 
 
 

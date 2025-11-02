@@ -320,6 +320,57 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Quick Start
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Stack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-node-exporter-to-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Node Exporter to Hosts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provision-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provision Infrastructure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tech-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tech Stack
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -486,14 +537,14 @@
 
 <h1 id="homelab-devops-overview">Homelab DevOps Overview<a class="headerlink" href="#homelab-devops-overview" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><img alt="🚀" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f680.svg" title=":rocket:" /> <strong>Golden Path</strong> — <em>lint → plan → approve → apply → configure → smoke</em> across AWS &amp; homelab (Proxmox/NFS).<br />
-Built with <strong>Terraform · Ansible · Docker · GitHub Actions · Jenkins · MkDocs</strong>.</p>
+<p><img alt="🚀" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f680.svg" title=":rocket:" /> <strong>Golden Path</strong> — <em>lint → plan → approve → apply → configure → monitor → smoke</em> across AWS &amp; homelab (Proxmox/NFS).<br />
+Built with <strong>Terraform · Ansible · Docker · Prometheus · Grafana · GitHub Actions · Jenkins · MkDocs</strong>.</p>
 </blockquote>
-<p><a href="https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml"><img alt="Infra Lint" src="https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml/badge.svg" /></a>
+<p><a href="https://github.com/iso-st3ph/homelab-devops/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/iso-st3ph/homelab-devops/actions/workflows/ci.yml/badge.svg" /></a>
+<a href="https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml"><img alt="Infra Lint" src="https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml/badge.svg" /></a>
 <a href="https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml"><img alt="Docs" src="https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml/badge.svg" /></a></p>
 <h2 id="pipeline-at-a-glance">Pipeline at a glance<a class="headerlink" href="#pipeline-at-a-glance" title="Permanent link">&para;</a></h2>
-<p>```mermaid
-flowchart TD
+<pre class="mermaid"><code>flowchart TD
   A[Developer Laptop] --&gt;|Git Push| B[GitHub Actions / Jenkins]
   B --&gt;|Static Checks| C[pre-commit · TFLint · Checkov · Ansible-lint · Hadolint]
   B --&gt;|Plan| D[Terraform Plan]
@@ -501,13 +552,16 @@ flowchart TD
   E --&gt;|Apply| F[Terraform Apply]
   F --&gt;|Configure| G[Ansible Playbooks]
   G --&gt;|Deploy/Proxy| H[Docker Reverse Proxy]
+  G --&gt;|Deploy Monitoring| M[Node Exporter]
   F --&gt;|Alt Target| I[Proxmox VM + NFS]
-  G --&gt;|Smoke Tests| J[Health Checks]</p>
+  G --&gt;|Smoke Tests| J[Health Checks]
+  M --&gt;|Metrics| K[Prometheus + Grafana]</code></pre>
 <h2 id="projects">📁 Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
 <ul>
-<li>🏗️ <a href="terraform/">Terraform Infrastructure</a></li>
-<li>🤖 <a href="ansible/">Ansible Automation</a></li>
-<li>🐳 <a href="docker/">Docker Reverse Proxy</a></li>
+<li>🏗️ <a href="terraform/">Terraform Infrastructure</a> - AWS EC2 provisioning with security best practices</li>
+<li>🤖 <a href="ansible/">Ansible Automation</a> - Configuration management and monitoring deployment</li>
+<li>� <a href="monitoring/">Monitoring Stack</a> - Prometheus + Grafana observability platform</li>
+<li>�🐳 <a href="docker/">Docker / Reverse Proxy</a> - Containerized services with Nginx</li>
 <li>🛰️ End-to-end DevOps CI/CD Lab</li>
 </ul>
 <hr />
@@ -517,10 +571,66 @@ flowchart TD
 ✅ CI pipelines &amp; automated linting<br />
 ✅ Terraform infrastructure provisioning<br />
 ✅ Ansible configuration management<br />
-✅ Docker applications behind a reverse proxy  </p>
+✅ Prometheus + Grafana monitoring &amp; observability<br />
+✅ Docker applications behind a reverse proxy<br />
+✅ Security hardening (SELinux, systemd, firewall automation)</p>
 <blockquote>
 <p>Goal: Operate like a production infrastructure in a home lab environment.</p>
 </blockquote>
+<hr />
+<h2 id="quick-start">🚀 Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="monitoring-stack">Monitoring Stack<a class="headerlink" href="#monitoring-stack" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Start Prometheus + Grafana</span>
+make<span class="w"> </span>mon-up
+
+<span class="c1"># Access Grafana at http://localhost:3001</span>
+</code></pre></div>
+<h3 id="deploy-node-exporter-to-hosts">Deploy Node Exporter to Hosts<a class="headerlink" href="#deploy-node-exporter-to-hosts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>ansible
+ansible-playbook<span class="w"> </span>playbooks/deploy-monitoring.yml
+</code></pre></div>
+<h3 id="provision-infrastructure">Provision Infrastructure<a class="headerlink" href="#provision-infrastructure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>terraform/aws-ec2
+terraform<span class="w"> </span>init<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>terraform<span class="w"> </span>plan
+</code></pre></div>
+<hr />
+<h2 id="tech-stack">🛠️ Tech Stack<a class="headerlink" href="#tech-stack" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Infrastructure</strong></td>
+<td>Terraform, AWS EC2, Proxmox</td>
+</tr>
+<tr>
+<td><strong>Configuration</strong></td>
+<td>Ansible, systemd</td>
+</tr>
+<tr>
+<td><strong>Monitoring</strong></td>
+<td>Prometheus, Grafana, Node Exporter, cAdvisor</td>
+</tr>
+<tr>
+<td><strong>Containers</strong></td>
+<td>Docker, Docker Compose</td>
+</tr>
+<tr>
+<td><strong>CI/CD</strong></td>
+<td>GitHub Actions, Jenkins, pre-commit</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>MkDocs Material</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Built by <a href="https://www.linkedin.com/in/stephon-skipper/">Stephon Skipper</a> | <a href="https://ayoskip.info">Portfolio Site</a></p>
 
 
 
