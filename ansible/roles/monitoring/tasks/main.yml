@@ -28,45 +28,49 @@
   failed_when: false
   when: node_exporter_binary.stat.exists
 
-- name: Download and install node_exporter
-  block:
-    - name: Create temporary download directory
-      ansible.builtin.tempfile:
-        state: directory
-        suffix: node_exporter
-      register: temp_dir
+- name: Create temporary download directory
+  ansible.builtin.tempfile:
+    state: directory
+    suffix: node_exporter
+  register: temp_dir
+  when: not node_exporter_binary.stat.exists or (installed_version.stdout is defined and node_exporter_version not in installed_version.stdout)
 
-    - name: Download node_exporter archive
-      ansible.builtin.get_url:
-        url: >-
-          https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/
-          node_exporter-{{ node_exporter_version }}.{{ node_exporter_arch }}.tar.gz
-        dest: "{{ temp_dir.path }}/node_exporter.tar.gz"
-        mode: '0644'
-
-    - name: Extract node_exporter archive
-      ansible.builtin.unarchive:
-        src: "{{ temp_dir.path }}/node_exporter.tar.gz"
-        dest: "{{ temp_dir.path }}"
-        remote_src: true
-        creates: "{{ temp_dir.path }}/node_exporter-{{ node_exporter_version }}.{{ node_exporter_arch }}/node_exporter"
-
-    - name: Copy node_exporter binary to bin path
-      ansible.builtin.copy:
-        src: "{{ temp_dir.path }}/node_exporter-{{ node_exporter_version }}.{{ node_exporter_arch }}/node_exporter"
-        dest: "{{ node_exporter_bin_path }}"
-        mode: '0755'
-        owner: root
-        group: root
-        remote_src: true
-      notify: Restart node_exporter
-
-    - name: Clean up temporary directory
-      ansible.builtin.file:
-        path: "{{ temp_dir.path }}"
-        state: absent
+- name: Download node_exporter archive
+  ansible.builtin.get_url:
+    url: >-
+      https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/
+      node_exporter-{{ node_exporter_version }}.{{ node_exporter_arch }}.tar.gz
+    dest: "{{ temp_dir.path }}/node_exporter.tar.gz"
+    mode: '0644'
   become: true
-  when: not node_exporter_binary.stat.exists or node_exporter_version not in installed_version.stdout | default('')
+  when: temp_dir is changed
+
+- name: Extract node_exporter archive
+  ansible.builtin.unarchive:
+    src: "{{ temp_dir.path }}/node_exporter.tar.gz"
+    dest: "{{ temp_dir.path }}"
+    remote_src: true
+  become: true
+  when: temp_dir is changed
+
+- name: Copy node_exporter binary to bin path
+  ansible.builtin.copy:
+    src: "{{ temp_dir.path }}/node_exporter-{{ node_exporter_version }}.{{ node_exporter_arch }}/node_exporter"
+    dest: "{{ node_exporter_bin_path }}"
+    mode: '0755'
+    owner: root
+    group: root
+    remote_src: true
+  become: true
+  notify: Restart node_exporter
+  when: temp_dir is changed
+
+- name: Clean up temporary directory
+  ansible.builtin.file:
+    path: "{{ temp_dir.path }}"
+    state: absent
+  become: true
+  when: temp_dir is changed
 
 - name: Install node_exporter systemd service
   ansible.builtin.template:
