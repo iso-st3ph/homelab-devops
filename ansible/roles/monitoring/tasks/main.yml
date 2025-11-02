@@ -29,8 +29,6 @@
   when: node_exporter_binary.stat.exists
 
 - name: Download and install node_exporter
-  when: not node_exporter_binary.stat.exists or node_exporter_version not in installed_version.stdout | default('')
-  become: true
   block:
     - name: Create temporary download directory
       ansible.builtin.tempfile:
@@ -67,6 +65,8 @@
       ansible.builtin.file:
         path: "{{ temp_dir.path }}"
         state: absent
+  become: true
+  when: not node_exporter_binary.stat.exists or node_exporter_version not in installed_version.stdout | default('')
 
 - name: Install node_exporter systemd service
   ansible.builtin.template:
