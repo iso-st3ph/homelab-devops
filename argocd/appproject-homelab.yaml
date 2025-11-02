@@ -1,0 +1,50 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: homelab
+  namespace: argocd
+  labels:
+    project: homelab
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Homelab DevOps Infrastructure Project
+
+  # Source repositories that applications may sync from
+  sourceRepos:
+    - https://github.com/iso-st3ph/homelab-devops.git
+    - '*'  # Allow any Helm repository
+
+  # Destination clusters and namespaces
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+
+  # Cluster resource whitelist
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  # Namespace resource whitelist
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  # Roles for RBAC (can be extended for team access)
+  roles:
+    - name: admin
+      description: Admin privileges for homelab project
+      policies:
+        - p, proj:homelab:admin, applications, *, homelab/*, allow
+        - p, proj:homelab:admin, repositories, *, *, allow
+      groups:
+        - admins
+
+    - name: developer
+      description: Developer read-only access
+      policies:
+        - p, proj:homelab:developer, applications, get, homelab/*, allow
+        - p, proj:homelab:developer, applications, sync, homelab/*, allow
+      groups:
+        - developers

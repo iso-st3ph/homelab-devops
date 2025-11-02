@@ -50,3 +50,38 @@ k8s-logs:    ## View Kubernetes pod logs
 k8s-clean:   ## Remove monitoring stack from Kubernetes
 	@export KUBECONFIG=~/.kube/config && \
 	kubectl delete -f kubernetes/monitoring/ || true
+
+# ArgoCD GitOps
+.PHONY: argocd-install argocd-status argocd-apps argocd-sync argocd-ui
+argocd-install:  ## Install ArgoCD on K3s cluster
+	./argocd/install-argocd.sh
+
+argocd-status:   ## Check ArgoCD and applications status
+	@export KUBECONFIG=~/.kube/config && \
+	echo "📊 ArgoCD Pods:" && \
+	kubectl get pods -n argocd && \
+	echo "" && \
+	echo "📦 Applications:" && \
+	kubectl get applications -n argocd && \
+	echo "" && \
+	echo "🎯 AppProjects:" && \
+	kubectl get appprojects -n argocd
+
+argocd-apps:     ## Deploy ArgoCD applications
+	@export KUBECONFIG=~/.kube/config && \
+	kubectl apply -f argocd/appproject-homelab.yaml && \
+	kubectl apply -f argocd/monitoring-stack.yaml
+
+argocd-sync:     ## Manually trigger ArgoCD sync
+	@export KUBECONFIG=~/.kube/config && \
+	kubectl patch application monitoring-stack -n argocd \
+	--type merge -p '{"operation":{"initiatedBy":{"username":"admin"},"sync":{}}}'
+
+argocd-ui:       ## Get ArgoCD UI access details
+	@echo "🌐 ArgoCD UI Access:" && \
+	echo "  URL: https://localhost:30443" && \
+	echo "  Username: admin" && \
+	echo -n "  Password: " && \
+	export KUBECONFIG=~/.kube/config && \
+	kubectl get secret argocd-initial-admin-secret -n argocd \
+	-o jsonpath="{.data.password}" | base64 -d && echo
