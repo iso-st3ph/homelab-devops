@@ -1,0 +1,17 @@
+---
+# Node Exporter version to install
+node_exporter_version: "1.8.2"
+node_exporter_arch: "linux-amd64"
+
+# Installation paths
+node_exporter_bin_path: "/usr/local/bin/node_exporter"
+node_exporter_user: "node_exporter"
+node_exporter_group: "node_exporter"
+
+# Service configuration
+node_exporter_port: 9100
+node_exporter_web_listen_address: "0.0.0.0:{{ node_exporter_port }}"
+
+# Firewall configuration
+node_exporter_firewall_enable: true
+node_exporter_firewall_zone: "public"

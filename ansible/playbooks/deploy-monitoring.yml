@@ -1,0 +1,25 @@
+---
+# Playbook to deploy Prometheus Node Exporter to monitored hosts
+- name: Deploy Node Exporter for monitoring
+  hosts: all
+  become: true
+
+  roles:
+    - monitoring
+
+  post_tasks:
+    - name: Display node_exporter access information
+      ansible.builtin.debug:
+        msg: |
+          ✅ Node Exporter installed successfully!
+
+          Access metrics at: http://{{ ansible_default_ipv4.address }}:{{ node_exporter_port }}/metrics
+
+          Add this host to Prometheus scrape config:
+            - job_name: 'node_exporter'
+              static_configs:
+                - targets: ['{{ ansible_default_ipv4.address }}:{{ node_exporter_port }}']
+                  labels:
+                    instance: '{{ ansible_hostname }}'
+                    environment: 'homelab'
+      when: ansible_default_ipv4.address is defined

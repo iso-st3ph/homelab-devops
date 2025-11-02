@@ -19,6 +19,7 @@ jobs:
           ANSIBLE_CONFIG: ansible/ansible.cfg
         run: |
           ansible-playbook -i ansible/inventories/hosts ansible/playbooks/patch.yml --syntax-check
+          ansible-playbook -i ansible/inventories/hosts ansible/playbooks/deploy-monitoring.yml --syntax-check
 
   terraform:
     runs-on: ubuntu-latest

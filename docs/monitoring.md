@@ -293,6 +293,26 @@ scrape_configs:
       - targets: ["nginx-exporter:9113"]
 ```
 
+### Deploying Node Exporter to Remote Hosts
+
+Use the included Ansible role to automatically deploy node_exporter:
+
+```bash
+# Deploy to all managed hosts
+cd ansible
+ansible-playbook playbooks/deploy-monitoring.yml
+
+# Generate Prometheus targets from inventory
+python3 ../scripts/generate_prometheus_targets.py inventories/hosts
+```
+
+This installs node_exporter as a systemd service with:
+- ✅ Automatic firewall configuration
+- ✅ Security hardening
+- ✅ Health check verification
+
+See [Ansible monitoring role](../ansible/roles/monitoring/README.md) for details.
+
 ## References
 
 - [Prometheus Documentation](https://prometheus.io/docs/)
@@ -305,6 +325,6 @@ scrape_configs:
 
 - [ ] Import pre-built Grafana dashboards
 - [ ] Set up Prometheus alert rules
-- [ ] Deploy node_exporter to remote hosts via Ansible
+- [x] Deploy node_exporter to remote hosts via Ansible ✅
 - [ ] Configure Nginx reverse proxy with SSL
 - [ ] Set up Alertmanager for notifications

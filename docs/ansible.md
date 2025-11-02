@@ -100,3 +100,56 @@ flowchart LR
       when: ansible_os_family == "Debian"
 ```
 
+---
+
+## 📊 Monitoring Role
+
+Automates deployment of Prometheus Node Exporter to infrastructure for metrics collection.
+
+### Features
+
+- ✅ Installs Node Exporter as systemd service
+- ✅ Automatic firewall configuration
+- ✅ Security hardening (unprivileged user, systemd protections)
+- ✅ Version management & idempotent updates
+- ✅ Health check verification
+
+### Quick Deploy
+
+```bash
+# Deploy to all hosts
+cd ansible
+ansible-playbook playbooks/deploy-monitoring.yml
+
+# Deploy to specific group
+ansible-playbook playbooks/deploy-monitoring.yml --limit monitoring
+
+# Verify installation
+ansible all -m uri -a "url=http://localhost:9100/metrics status_code=200"
+```
+
+### Integration with Prometheus
+
+After deployment, add hosts to `docker/monitoring-stack/prometheus/prometheus.yml`:
+
+```yaml
+scrape_configs:
+  - job_name: 'node_exporter_homelab'
+    static_configs:
+      - targets:
+          - 'server1.local:9100'
+          - 'server2.local:9100'
+          - 'server3.local:9100'
+        labels:
+          environment: 'homelab'
+```
+
+See [monitoring role documentation](../ansible/roles/monitoring/README.md) for details.
+
+---
+
+## 🔐 Security Role
+
+Coming soon: Automated security hardening, SSH configuration, and fail2ban setup.
+
+
