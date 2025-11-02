@@ -605,11 +605,13 @@ Built with <strong>Terraform · Ansible · Docker · Prometheus · Grafana · Gi
 <li>🏗️ <a href="terraform/">Terraform Infrastructure</a> - Multi-environment AWS provisioning (dev/staging/prod)</li>
 <li>🤖 <a href="ansible/">Ansible Automation</a> - Configuration management with Vault secrets</li>
 <li>📊 <a href="monitoring/">Monitoring Stack</a> - Prometheus + Grafana + AlertManager with Slack alerts</li>
-<li><a href="docker/">Docker / Reverse Proxy</a> - Containerized services with Nginx</li>
-<li>� <strong>NEW: Secrets Management</strong> - Ansible Vault encryption for credentials</li>
-<li>🌍 <strong>NEW: Multi-Environment</strong> - Terraform workspaces for dev/staging/prod</li>
-<li>🚨 <strong>NEW: Production Alerting</strong> - 15+ alert rules with runbooks</li>
-<li>💾 <strong>NEW: Backup &amp; DR</strong> - Automated backup/restore scripts</li>
+<li>📈 <a href="grafana-dashboards/">Grafana Dashboards</a> - 4 production dashboards auto-provisioned</li>
+<li>🔒 <a href="security/">Security Scanning</a> - Trivy container vulnerability scanning</li>
+<li>🐳 <a href="docker/">Docker / Reverse Proxy</a> - Containerized services with Nginx</li>
+<li>🔐 <strong>Secrets Management</strong> - Ansible Vault encryption for credentials</li>
+<li>🌍 <strong>Multi-Environment</strong> - Terraform workspaces for dev/staging/prod</li>
+<li>🚨 <strong>Production Alerting</strong> - 15+ alert rules with runbooks</li>
+<li>💾 <strong>Backup &amp; DR</strong> - Automated backup/restore scripts</li>
 </ul>
 <hr />
 <h2 id="about-this-lab">🎯 About This Lab<a class="headerlink" href="#about-this-lab" title="Permanent link">&para;</a></h2>
@@ -619,6 +621,8 @@ Built with <strong>Terraform · Ansible · Docker · Prometheus · Grafana · Gi
 ✅ Configuration management (Ansible with encrypted secrets)<br />
 ✅ Full observability stack (Prometheus + Grafana + AlertManager)<br />
 ✅ Production alerting with Slack integration<br />
+✅ Container security scanning (Trivy in CI/CD)<br />
+✅ Auto-provisioned Grafana dashboards (4 production-ready)<br />
 ✅ Docker containerization with reverse proxy<br />
 ✅ Security hardening (SELinux, systemd, Ansible Vault)<br />
 ✅ Automated testing &amp; validation<br />
@@ -662,7 +666,11 @@ terraform<span class="w"> </span>init<span class="w"> </span><span class="o">&am
 </tr>
 <tr>
 <td><strong>Monitoring</strong></td>
-<td>Prometheus, Grafana, Node Exporter, cAdvisor</td>
+<td>Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>Trivy, Ansible Vault, SELinux</td>
 </tr>
 <tr>
 <td><strong>Containers</strong></td>
