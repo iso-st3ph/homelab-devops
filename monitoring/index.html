@@ -443,6 +443,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#alertmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlertManager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#node-exporter" class="md-nav__link">
     <span class="md-ellipsis">
       Node Exporter
@@ -758,7 +767,7 @@
 
 <h1 id="monitoring-observability">Monitoring &amp; Observability<a class="headerlink" href="#monitoring-observability" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This homelab includes a production-grade monitoring stack based on <strong>Prometheus</strong> and <strong>Grafana</strong>, providing real-time metrics, dashboards, and alerting capabilities for infrastructure observability.</p>
+<p>This homelab includes a <strong>production-grade monitoring stack</strong> with <strong>Prometheus, Grafana, and AlertManager</strong>, providing real-time metrics, dashboards, and <strong>automated alerting with Slack integration</strong> for full infrastructure observability.</p>
 <h2 id="stack-components">Stack Components<a class="headerlink" href="#stack-components" title="Permanent link">&para;</a></h2>
 <h3 id="prometheus">Prometheus<a class="headerlink" href="#prometheus" title="Permanent link">&para;</a></h3>
 <ul>
@@ -766,6 +775,7 @@
 <li>Scrapes metrics from multiple exporters every 15 seconds</li>
 <li>15-day data retention</li>
 <li>HTTP API for querying metrics</li>
+<li><strong>Alert rule evaluation</strong> with 15+ production-ready alerts</li>
 </ul>
 <h3 id="grafana">Grafana<a class="headerlink" href="#grafana" title="Permanent link">&para;</a></h3>
 <ul>
@@ -773,11 +783,21 @@
 <li>Pre-configured Prometheus datasource</li>
 <li>Auto-provisioned dashboards</li>
 <li>Dark theme by default</li>
+<li>Supports importing from grafana.com</li>
+</ul>
+<h3 id="alertmanager">AlertManager<a class="headerlink" href="#alertmanager" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Alert routing and notification</strong> system</li>
+<li>Slack integration for critical/warning alerts</li>
+<li>Alert grouping and inhibition rules</li>
+<li>Silencing and acknowledgment support</li>
+<li>Production-ready alert receiver configuration</li>
 </ul>
 <h3 id="node-exporter">Node Exporter<a class="headerlink" href="#node-exporter" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Exports <strong>host system metrics</strong>: CPU, memory, disk I/O, network</li>
 <li>Runs in host network mode for accurate data collection</li>
+<li>Deployed to remote hosts via Ansible automation</li>
 </ul>
 <h3 id="cadvisor">cAdvisor<a class="headerlink" href="#cadvisor" title="Permanent link">&para;</a></h3>
 <ul>
@@ -790,11 +810,12 @@
 make<span class="w"> </span>mon-up
 
 <span class="c1"># Access services</span>
-<span class="c1"># Grafana:       http://localhost:3000</span>
+<span class="c1"># Grafana:       http://localhost:3001</span>
 <span class="c1"># Prometheus:    http://localhost:9090</span>
+<span class="c1"># AlertManager:  http://localhost:9093</span>
 <span class="c1"># cAdvisor:      http://localhost:8080</span>
 </code></pre></div>
-<p>Default Grafana credentials: <code>admin</code> / <code>changeme-please</code> (configure in <code>.env</code>)</p>
+<p>Default Grafana credentials: <code>admin</code> / (set in <code>.env</code> - use Ansible Vault in production)</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TB
     subgraph "Monitoring Stack"
@@ -880,7 +901,45 @@ docker<span class="w"> </span>compose<span class="w"> </span>restart<span class=
 - Explore → Dashboards
 - View pre-configured or imported dashboards</p>
 <h3 id="setting-up-alerts">Setting Up Alerts<a class="headerlink" href="#setting-up-alerts" title="Permanent link">&para;</a></h3>
-<p>Prometheus alert rules can be added in <code>prometheus/alert_rules.yml</code>:</p>
+<p><strong>Production-Ready Alert Rules Included:</strong></p>
+<p>The monitoring stack comes with 15+ pre-configured alert rules in <code>prometheus/rules/alerts.yml</code>:</p>
+<p><strong>System Alerts:</strong></p>
+<ul>
+<li><code>NodeExporterDown</code> - Node exporter service failure (critical)</li>
+<li><code>HighCPUUsage</code> - CPU usage &gt;80% for 5 minutes (warning)</li>
+<li><code>HighMemoryUsage</code> - Memory usage &gt;90% for 5 minutes (critical)</li>
+<li><code>DiskSpaceLow</code> - Disk space &lt;15% (critical)</li>
+<li><code>DiskSpaceWarning</code> - Disk space &lt;25% (warning)</li>
+</ul>
+<p><strong>Container Alerts:</strong></p>
+<ul>
+<li><code>ContainerDown</code> - cAdvisor monitoring failure (critical)</li>
+<li><code>ContainerHighMemory</code> - Container using &gt;90% of memory limit (warning)</li>
+</ul>
+<p><strong>Service Alerts:</strong></p>
+<ul>
+<li><code>PrometheusDown</code> - Prometheus self-monitoring failure (critical)</li>
+<li><code>PrometheusTargetDown</code> - Any scrape target unreachable (warning)</li>
+<li><code>GrafanaDown</code> - Grafana dashboard unavailable (warning)</li>
+</ul>
+<p>Each alert includes:</p>
+<ul>
+<li>✅ <strong>Runbook commands</strong> for quick troubleshooting</li>
+<li>✅ <strong>Severity labels</strong> (critical/warning)</li>
+<li>✅ <strong>Clear descriptions</strong> of the issue</li>
+<li>✅ <strong>Threshold tuning</strong> based on best practices</li>
+</ul>
+<p><strong>AlertManager Configuration:</strong></p>
+<p>Configure Slack notifications in <code>alertmanager/alertmanager.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">receivers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;slack-critical&#39;</span>
+<span class="w">    </span><span class="nt">slack_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">api_url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;YOUR_SLACK_WEBHOOK_URL&#39;</span>
+<span class="w">        </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;#homelab-critical&#39;</span>
+</code></pre></div>
+<p>See <code>docker/monitoring-stack/alertmanager/README.md</code> for complete setup guide.</p>
+<p><strong>Custom Alert Rules:</strong></p>
+<p>Add your own rules in <code>prometheus/alert_rules.yml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">groups</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system_alerts</span>
 <span class="w">    </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
@@ -1010,11 +1069,15 @@ python3<span class="w"> </span>../scripts/generate_prometheus_targets.py<span cl
 </ul>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> Import pre-built Grafana dashboards</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Set up Prometheus alert rules</li>
-<li class="task-list-item"><input type="checkbox" disabled checked/> Deploy node_exporter to remote hosts via Ansible ✅</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>Production AlertManager with Slack</strong> ✅</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>15+ Alert rules with runbooks</strong> ✅</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>Deploy node_exporter to remote hosts via Ansible</strong> ✅</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>Secrets management with Ansible Vault</strong> ✅</li>
+<li class="task-list-item"><input type="checkbox" disabled checked/> <strong>Automated backup/restore scripts</strong> ✅</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Import pre-built Grafana dashboards (Node Exporter Full, Docker)</li>
 <li class="task-list-item"><input type="checkbox" disabled/> Configure Nginx reverse proxy with SSL</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Set up Alertmanager for notifications</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Log aggregation with Loki + Promtail</li>
+<li class="task-list-item"><input type="checkbox" disabled/> Distributed tracing with Tempo</li>
 </ul>
 
 
