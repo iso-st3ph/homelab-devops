@@ -56,6 +56,7 @@ nav:
   - Ansible: ansible.md
   - Kubernetes (K3s): kubernetes.md
   - GitOps (ArgoCD): gitops.md
+  - Jenkins CI/CD: jenkins.md
   - Docker / Reverse Proxy: docker.md
   - Monitoring: monitoring.md
   - Grafana Dashboards: grafana-dashboards.md

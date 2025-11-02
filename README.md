@@ -22,6 +22,7 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 - ✅ **Full Observability Stack** (Metrics + Logs + Traces)
 - ✅ **Kubernetes Orchestration** (K3s cluster with monitoring stack)
 - ✅ **GitOps Methodology** (ArgoCD declarative deployment and sync)
+- ✅ **Jenkins CI/CD** (Kubernetes-based with dynamic agent provisioning)
 - ✅ **Container Orchestration** (Docker Compose services)
 - ✅ **CI/CD Automation** (GitHub Actions + pre-commit hooks)
 - ✅ **Container Security** (Trivy vulnerability scanning in CI/CD)
@@ -428,9 +429,23 @@ make serve
   - Complete audit trail via Git history
   - Comprehensive documentation and operational guides
 
+- [x] **Jenkins CI/CD on Kubernetes**
+  - Jenkins LTS deployed on K3s cluster
+  - Dynamic Kubernetes agent provisioning (max 10 concurrent)
+  - Jenkins Configuration as Code (JCasC) for zero-touch setup
+  - Multi-stage declarative pipeline with specialized containers
+  - Terraform validation and module testing
+  - Ansible playbook syntax checking
+  - Trivy security scanning (IaC + container images)
+  - kubectl dry-run validation for K8s manifests
+  - RBAC with dedicated ServiceAccount and ClusterRole
+  - 20Gi persistent storage for jenkins_home
+  - NodePort access on port 30808
+  - ArgoCD Application for GitOps management
+  - Automated deployment scripts and Makefile targets
+
 ### 📋 Planned (Phase 3 - Advanced)
 
-- [ ] Jenkins integration on Kubernetes
 - [ ] Packer image builds with automation
 - [ ] HashiCorp Vault integration
 - [ ] Service mesh (deferred - K8s v1.33 compatibility)
