@@ -50,8 +50,34 @@ services:
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
     depends_on:
       - prometheus
+      - loki
     networks: [monitoring]
     restart: unless-stopped
+
+  loki:
+    image: grafana/loki:latest
+    container_name: mon-loki
+    ports:
+      - "${LOKI_PORT:-3100}:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki_data:/loki
+      - ./loki/loki-config.yaml:/etc/loki/local-config.yaml:ro,z
+    networks: [monitoring]
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: mon-promtail
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./promtail/promtail-config.yaml:/etc/promtail/config.yml:ro,z
+    command: -config.file=/etc/promtail/config.yml
+    networks: [monitoring]
+    restart: unless-stopped
+    depends_on:
+      - loki
+    user: "0"  # Run as root to access Docker socket
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -88,3 +114,4 @@ volumes:
   prometheus_data:
   grafana_data:
   alertmanager_data:
+  loki_data:
