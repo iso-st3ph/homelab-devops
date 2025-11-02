@@ -9,8 +9,12 @@ datasources:
     jsonData:
       maxLines: 1000
       derivedFields:
-        # Extract trace IDs from logs (if using Tempo later)
+        # Extract trace IDs from logs and link to Tempo
         - datasourceUid: tempo
           matcherRegex: "trace_id=(\\w+)"
+          name: TraceID
+          url: "$${__value.raw}"
+        - datasourceUid: tempo
+          matcherRegex: "traceID=(\\w+)"
           name: TraceID
           url: "$${__value.raw}"

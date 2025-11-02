@@ -51,6 +51,7 @@ services:
     depends_on:
       - prometheus
       - loki
+      - tempo
     networks: [monitoring]
     restart: unless-stopped
 
@@ -65,6 +66,21 @@ services:
       - ./loki/loki-config.yaml:/etc/loki/local-config.yaml:ro,z
     networks: [monitoring]
     restart: unless-stopped
+
+  tempo:
+    image: grafana/tempo:latest
+    container_name: mon-tempo
+    command: -config.file=/etc/tempo/tempo.yaml
+    ports:
+      - "${TEMPO_PORT:-3200}:3200"   # Tempo HTTP
+      - "${TEMPO_OTLP_GRPC:-4317}:4317"  # OTLP gRPC
+      - "${TEMPO_OTLP_HTTP:-4318}:4318"  # OTLP HTTP
+    volumes:
+      - tempo_data:/tmp/tempo
+      - ./tempo/tempo-config.yaml:/etc/tempo/tempo.yaml:ro,z
+    networks: [monitoring]
+    restart: unless-stopped
+    user: "0"  # Run as root for volume permissions
 
   promtail:
     image: grafana/promtail:latest
@@ -115,3 +131,4 @@ volumes:
   grafana_data:
   alertmanager_data:
   loki_data:
+  tempo_data:
