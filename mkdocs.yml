@@ -54,6 +54,7 @@ nav:
   - Architecture: architecture.md
   - Terraform: terraform.md
   - Ansible: ansible.md
+  - Kubernetes (K3s): kubernetes.md
   - Docker / Reverse Proxy: docker.md
   - Monitoring: monitoring.md
   - Grafana Dashboards: grafana-dashboards.md

@@ -28,6 +28,7 @@ flowchart TD
 
 - 🏗️ [Terraform Infrastructure](terraform.md) - Multi-environment AWS provisioning (dev/staging/prod)
 - 🤖 [Ansible Automation](ansible.md) - Configuration management with Vault secrets
+- ☸️ **Kubernetes (K3s)** - Production monitoring stack on Kubernetes cluster
 - 📊 [Monitoring Stack](monitoring.md) - Prometheus + Grafana + AlertManager with Slack alerts
 - 📈 [Grafana Dashboards](grafana-dashboards.md) - 4 production dashboards auto-provisioned
 - 🔒 [Security Scanning](security.md) - Trivy container vulnerability scanning
@@ -46,6 +47,7 @@ This homelab demonstrates production-ready DevOps practices:
 ✅ Git-based workflows with CI/CD  
 ✅ Infrastructure as Code (Terraform with multi-environment)  
 ✅ Configuration management (Ansible with encrypted secrets)  
+✅ Kubernetes orchestration (K3s with production workloads)  
 ✅ Full observability stack (Metrics + Logs + Traces)  
 ✅ Production alerting with Slack integration  
 ✅ Container security scanning (Trivy in CI/CD)  
@@ -91,6 +93,7 @@ terraform init && terraform plan
 |-----------|------------|
 | **Infrastructure** | Terraform, AWS EC2, Proxmox |
 | **Configuration** | Ansible, systemd |
+| **Orchestration** | Kubernetes (K3s) |
 | **Monitoring** | Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor |
 | **Logging** | Loki, Promtail |
 | **Tracing** | Tempo (OTLP, trace correlation) |

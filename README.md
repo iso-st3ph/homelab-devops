@@ -20,6 +20,7 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 - ✅ **Configuration Management** (Ansible roles and playbooks)
 - ✅ **Production Observability** (Prometheus + Grafana + AlertManager + Slack)
 - ✅ **Full Observability Stack** (Metrics + Logs + Traces)
+- ✅ **Kubernetes Orchestration** (K3s cluster with monitoring stack)
 - ✅ **Container Orchestration** (Docker Compose services)
 - ✅ **CI/CD Automation** (GitHub Actions + pre-commit hooks)
 - ✅ **Container Security** (Trivy vulnerability scanning in CI/CD)
@@ -43,6 +44,7 @@ Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — th
 | **Monitoring** | Prometheus, Grafana, AlertManager, Node Exporter, cAdvisor |
 | **Logging** | Loki, Promtail (30-day retention) |
 | **Tracing** | Tempo (OTLP receivers, trace correlation) |
+| **Orchestration** | Kubernetes (K3s), Docker, Docker Compose |
 | **Containers** | Docker, Docker Compose, Nginx |
 | **CI/CD** | GitHub Actions, pre-commit, TFLint, Checkov, yamllint |
 | **Security** | Trivy, Ansible Vault, SELinux, systemd hardening |
@@ -400,8 +402,20 @@ make serve
   - Service graphs and span metrics generation
   - 30-day trace retention with compaction
 
+### ✅ Completed (Phase 3 - Kubernetes & GitOps)
+
+- [x] **Kubernetes/K3s cluster deployment**
+  - K3s v1.33.5+k3s1 lightweight Kubernetes
+  - Complete monitoring stack on Kubernetes (5 services)
+  - Prometheus with K8s service discovery and RBAC
+  - Grafana with auto-provisioned datasources
+  - Loki and Tempo for logs and traces
+  - AlertManager with routing rules
+  - PersistentVolumeClaims for data persistence (50Gi total)
+  - Health checks, resource limits, and NodePort services
+  - Deployment automation with kubectl manifests
+
 ### 📋 Planned (Phase 3 - Advanced)
-- [ ] Kubernetes/K3s cluster deployment
 - [ ] GitOps with ArgoCD/Flux
 - [ ] Service mesh (Istio/Linkerd)
 - [ ] Jenkins integration
