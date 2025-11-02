@@ -1,0 +1,1461 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://iso-st3ph.github.io/homelab-devops/jenkins/">
+      
+      
+        <link rel="prev" href="../gitops/">
+      
+      
+        <link rel="next" href="../docker/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+    
+    
+      
+        <title>Jenkins CI/CD - Iso-St3ph DevOps Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jenkins-cicd-on-kubernetes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Iso-St3ph DevOps Portfolio" class="md-header__button md-logo" aria-label="Iso-St3ph DevOps Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Iso-St3ph DevOps Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Jenkins CI/CD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/iso-st3ph/homelab-devops" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iso-st3ph/homelab-devops
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Iso-St3ph DevOps Portfolio" class="md-nav__button md-logo" aria-label="Iso-St3ph DevOps Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Iso-St3ph DevOps Portfolio
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/iso-st3ph/homelab-devops" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iso-st3ph/homelab-devops
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terraform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Terraform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes (K3s)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitOps (ArgoCD)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Jenkins CI/CD
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jenkins CI/CD
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jenkins-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Plugin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Containers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitops-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitOps Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jenkins-configuration-as-code-jcasc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins Configuration as Code (JCasC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC Permissions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 CI/CD Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 CI/CD Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jenkinsfile-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkinsfile Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-pipeline-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Pipeline Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Monitoring &amp; Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Monitoring &amp; Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-deployment-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Deployment Status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      View Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-jenkins-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Jenkins UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restart-jenkins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restart Jenkins
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Security Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Security Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jenkins-pod-not-starting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins Pod Not Starting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents-not-spawning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agents Not Spawning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui-not-accessible" class="md-nav__link">
+    <span class="md-ellipsis">
+      UI Not Accessible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-fails-with-permission-denied" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Fails with Permission Denied
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Scaling &amp; Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Scaling &amp; Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vertical-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vertical Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Tuning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skills-demonstrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎓 Skills Demonstrated
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker / Reverse Proxy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grafana-dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grafana Dashboards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Scanning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hire-me/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hire Me
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/iso-st3ph/homelab-devops/edit/master/docs/jenkins.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="jenkins-cicd-on-kubernetes">Jenkins CI/CD on Kubernetes<a class="headerlink" href="#jenkins-cicd-on-kubernetes" title="Permanent link">&para;</a></h1>
+<p>Production-ready Jenkins deployment on K3s with dynamic Kubernetes agent provisioning and comprehensive CI/CD pipelines.</p>
+<h2 id="overview">🎯 Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This Jenkins implementation demonstrates cloud-native CI/CD with:</p>
+<ul>
+<li><strong>Jenkins Controller on Kubernetes</strong> - LTS version with persistent storage</li>
+<li><strong>Dynamic Agent Provisioning</strong> - Kubernetes plugin spawns pods on-demand</li>
+<li><strong>Configuration as Code</strong> - JCasC for reproducible setups</li>
+<li><strong>Multi-stage Pipelines</strong> - Terraform, Ansible, security scanning, K8s validation</li>
+<li><strong>GitOps Management</strong> - ArgoCD manages Jenkins deployment</li>
+</ul>
+<h2 id="architecture">🏗️ Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TB
+    subgraph "Development"
+        DEV[Developer]
+        GIT[GitHub Repository]
+    end
+
+    subgraph "Jenkins CI/CD"
+        JENKINS[Jenkins Controller&lt;br/&gt;LTS on K8s]
+        AGENT[Kubernetes Agents&lt;br/&gt;Dynamic Pods]
+    end
+
+    subgraph "Pipeline Stages"
+        TERRAFORM[Terraform&lt;br/&gt;Validate &amp; Test]
+        ANSIBLE[Ansible&lt;br/&gt;Syntax Check]
+        TRIVY[Trivy&lt;br/&gt;Security Scan]
+        KUBECTL[kubectl&lt;br/&gt;K8s Validation]
+    end
+
+    subgraph "GitOps"
+        ARGO[ArgoCD]
+    end
+
+    DEV --&gt;|Push Code| GIT
+    GIT --&gt;|Webhook/Poll| JENKINS
+    JENKINS --&gt;|Spawn Pod| AGENT
+    AGENT --&gt;|Stage 1| TERRAFORM
+    AGENT --&gt;|Stage 2| ANSIBLE
+    AGENT --&gt;|Stage 3| TRIVY
+    AGENT --&gt;|Stage 4| KUBECTL
+    ARGO --&gt;|Manages| JENKINS
+    ARGO &lt;--&gt;|Syncs| GIT</code></pre>
+<h2 id="components">📦 Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<h3 id="jenkins-controller">Jenkins Controller<a class="headerlink" href="#jenkins-controller" title="Permanent link">&para;</a></h3>
+<p><strong>Deployment Configuration</strong>:</p>
+<ul>
+<li><strong>Image</strong>: <code>jenkins/jenkins:lts</code></li>
+<li><strong>Replicas</strong>: 1 (stateful application)</li>
+<li><strong>Resources</strong>: 500m CPU / 1Gi RAM (request), 2 CPU / 3Gi RAM (limit)</li>
+<li><strong>Storage</strong>: 20Gi PersistentVolumeClaim (local-path storage class)</li>
+<li><strong>Ports</strong>: 8080 (UI), 50000 (JNLP for agents)</li>
+<li><strong>Access</strong>: NodePort 30808</li>
+</ul>
+<h3 id="kubernetes-plugin">Kubernetes Plugin<a class="headerlink" href="#kubernetes-plugin" title="Permanent link">&para;</a></h3>
+<p><strong>Dynamic Agent Provisioning</strong>:</p>
+<ul>
+<li>Spawns pods in <code>jenkins</code> namespace on-demand</li>
+<li>Auto-cleanup after job completion</li>
+<li>Max 10 concurrent agents</li>
+<li>Resource limits: 500m CPU / 512Mi RAM per agent</li>
+<li>JNLP tunnel for controller-agent communication</li>
+</ul>
+<h3 id="pipeline-containers">Pipeline Containers<a class="headerlink" href="#pipeline-containers" title="Permanent link">&para;</a></h3>
+<p>Each agent pod includes specialized containers:</p>
+<ul>
+<li><strong>terraform</strong> - <code>hashicorp/terraform:latest</code> for IaC validation/testing</li>
+<li><strong>ansible</strong> - <code>cytopia/ansible:latest</code> for playbook syntax checks</li>
+<li><strong>trivy</strong> - <code>aquasec/trivy:latest</code> for security scanning</li>
+<li><strong>kubectl</strong> - <code>bitnami/kubectl:latest</code> for K8s manifest validation</li>
+</ul>
+<h2 id="deployment">🚀 Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h2>
+<h3 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deploy Jenkins</span>
+make<span class="w"> </span>jenkins-deploy
+
+<span class="c1"># Check status</span>
+make<span class="w"> </span>jenkins-status
+
+<span class="c1"># View logs</span>
+make<span class="w"> </span>jenkins-logs
+
+<span class="c1"># Get UI access details</span>
+make<span class="w"> </span>jenkins-ui
+</code></pre></div>
+<h3 id="gitops-deployment">GitOps Deployment<a class="headerlink" href="#gitops-deployment" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deploy via ArgoCD</span>
+make<span class="w"> </span>jenkins-app
+
+<span class="c1"># Check ArgoCD sync status</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>application<span class="w"> </span>jenkins<span class="w"> </span>-n<span class="w"> </span>argocd
+</code></pre></div>
+<h3 id="manual-deployment">Manual Deployment<a class="headerlink" href="#manual-deployment" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>kubernetes/jenkins
+
+<span class="c1"># Apply all manifests</span>
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>.
+
+<span class="c1"># Wait for pod ready</span>
+kubectl<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--for<span class="o">=</span><span class="nv">condition</span><span class="o">=</span>ready<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>jenkins<span class="w"> </span>-n<span class="w"> </span>jenkins<span class="w"> </span>--timeout<span class="o">=</span>300s
+</code></pre></div>
+<h2 id="configuration">🔧 Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="jenkins-configuration-as-code-jcasc">Jenkins Configuration as Code (JCasC)<a class="headerlink" href="#jenkins-configuration-as-code-jcasc" title="Permanent link">&para;</a></h3>
+<p>Jenkins is configured via JCasC (<code>kubernetes/jenkins/03-configmap.yaml</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nt">jenkins</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">systemMessage</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Jenkins</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">DevOps</span><span class="nv"> </span><span class="s">Portfolio</span><span class="nv"> </span><span class="s">CI/CD</span><span class="nv"> </span><span class="s">Server&quot;</span>
+<span class="w">  </span><span class="nt">numExecutors</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">  </span><span class="c1"># All jobs run on Kubernetes agents</span>
+<span class="w">  </span><span class="nt">clouds</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kubernetes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;kubernetes&quot;</span>
+<span class="w">        </span><span class="nt">serverUrl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://kubernetes.default&quot;</span>
+<span class="w">        </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jenkins&quot;</span>
+<span class="w">        </span><span class="nt">containerCapStr</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10&quot;</span>
+<span class="w">        </span><span class="nt">templates</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jenkins-agent&quot;</span>
+<span class="w">            </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jnlp&quot;</span>
+<span class="w">                </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;jenkins/inbound-agent:latest&quot;</span>
+<span class="w">                </span><span class="nt">resourceRequestCpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500m&quot;</span>
+<span class="w">                </span><span class="nt">resourceRequestMemory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;512Mi&quot;</span>
+</code></pre></div>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>✅ No manual setup wizard</li>
+<li>✅ Reproducible configuration</li>
+<li>✅ Version controlled in Git</li>
+<li>✅ Easy to update and redeploy</li>
+</ul>
+<h3 id="rbac-permissions">RBAC Permissions<a class="headerlink" href="#rbac-permissions" title="Permanent link">&para;</a></h3>
+<p>Jenkins ServiceAccount has ClusterRole permissions for:</p>
+<ul>
+<li><strong>Pods</strong>: create, delete, get, list, patch, update, watch</li>
+<li><strong>Pods/exec</strong>: Full access for running commands in agents</li>
+<li><strong>Pods/log</strong>: Read logs from agent pods</li>
+<li><strong>Secrets</strong>: Manage credentials</li>
+<li><strong>ConfigMaps</strong>: Manage configuration</li>
+<li><strong>PVCs</strong>: Manage persistent storage</li>
+</ul>
+<h2 id="cicd-pipeline">📋 CI/CD Pipeline<a class="headerlink" href="#cicd-pipeline" title="Permanent link">&para;</a></h2>
+<h3 id="jenkinsfile-overview">Jenkinsfile Overview<a class="headerlink" href="#jenkinsfile-overview" title="Permanent link">&para;</a></h3>
+<p>The root <code>Jenkinsfile</code> demonstrates a complete CI/CD pipeline:</p>
+<p><strong>Stages</strong>:</p>
+<ol>
+<li><strong>Checkout</strong> - Clone repository from Git</li>
+<li><strong>Terraform Validation</strong> - Format check, init, validate</li>
+<li><strong>Terraform Test</strong> - Run module tests</li>
+<li><strong>Ansible Syntax Check</strong> - Validate all playbooks</li>
+<li><strong>Security Scan - IaC</strong> - Trivy config scanning (Terraform + K8s)</li>
+<li><strong>Security Scan - Images</strong> - Trivy container image scanning</li>
+<li><strong>Kubernetes Validation</strong> - kubectl dry-run validation</li>
+<li><strong>Summary</strong> - Report pipeline results</li>
+</ol>
+<h3 id="example-pipeline-definition">Example Pipeline Definition<a class="headerlink" href="#example-pipeline-definition" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">pipeline</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="n">agent</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">kubernetes</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">yaml</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        # Pod spec with terraform, ansible, trivy, kubectl containers</span>
+<span class="s1">      &#39;&#39;&#39;</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
+
+<span class="w">  </span><span class="n">stages</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Terraform Validation&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">container</span><span class="o">(</span><span class="s1">&#39;terraform&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">            terraform init -backend=false</span>
+<span class="s1">            terraform validate</span>
+<span class="s1">            terraform fmt -check</span>
+<span class="s1">          &#39;&#39;&#39;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+
+<span class="w">    </span><span class="n">stage</span><span class="o">(</span><span class="s1">&#39;Security Scan&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">steps</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="n">container</span><span class="o">(</span><span class="s1">&#39;trivy&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">          </span><span class="n">sh</span><span class="w"> </span><span class="s1">&#39;trivy config terraform/&#39;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">      </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
+
+<span class="w">  </span><span class="n">post</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="n">always</span><span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="n">cleanWs</span><span class="o">()</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h3 id="running-the-pipeline">Running the Pipeline<a class="headerlink" href="#running-the-pipeline" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Create Pipeline Job</strong> in Jenkins UI</li>
+<li><strong>Configure</strong> → Pipeline from SCM → Git</li>
+<li><strong>Repository URL</strong>: <code>https://github.com/iso-st3ph/homelab-devops.git</code></li>
+<li><strong>Branch</strong>: <code>main</code></li>
+<li><strong>Script Path</strong>: <code>Jenkinsfile</code></li>
+<li><strong>Save</strong> and <strong>Build Now</strong></li>
+</ol>
+<h2 id="monitoring-operations">📊 Monitoring &amp; Operations<a class="headerlink" href="#monitoring-operations" title="Permanent link">&para;</a></h2>
+<h3 id="check-deployment-status">Check Deployment Status<a class="headerlink" href="#check-deployment-status" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Pods</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>jenkins
+
+<span class="c1"># Services</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-n<span class="w"> </span>jenkins
+
+<span class="c1"># PersistentVolumeClaims</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span>-n<span class="w"> </span>jenkins
+
+<span class="c1"># Full status</span>
+make<span class="w"> </span>jenkins-status
+</code></pre></div>
+<h3 id="view-logs">View Logs<a class="headerlink" href="#view-logs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Controller logs</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>jenkins<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>jenkins<span class="w"> </span>-f
+
+<span class="c1"># Or via Makefile</span>
+make<span class="w"> </span>jenkins-logs
+
+<span class="c1"># Agent logs (during job)</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>jenkins<span class="w"> </span>&lt;agent-pod-name&gt;<span class="w"> </span>-c<span class="w"> </span>terraform
+</code></pre></div>
+<h3 id="access-jenkins-ui">Access Jenkins UI<a class="headerlink" href="#access-jenkins-ui" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>URL: http://localhost:30808
+</code></pre></div>
+<p>Since JCasC disables the setup wizard, Jenkins starts ready to use. Create jobs directly or configure authentication as needed.</p>
+<h3 id="restart-jenkins">Restart Jenkins<a class="headerlink" href="#restart-jenkins" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Rollout restart (zero downtime)</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment/jenkins<span class="w"> </span>-n<span class="w"> </span>jenkins
+
+<span class="c1"># Check rollout status</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span>status<span class="w"> </span>deployment/jenkins<span class="w"> </span>-n<span class="w"> </span>jenkins
+</code></pre></div>
+<h2 id="security-features">🔐 Security Features<a class="headerlink" href="#security-features" title="Permanent link">&para;</a></h2>
+<h3 id="container-security">Container Security<a class="headerlink" href="#container-security" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Non-root user</strong> - Jenkins runs as UID 1000</li>
+<li><strong>Read-only ConfigMap</strong> - Configuration mounted read-only</li>
+<li><strong>Resource limits</strong> - CPU/memory limits prevent resource exhaustion</li>
+<li><strong>Security scanning</strong> - Trivy scans in pipeline</li>
+</ul>
+<h3 id="rbac">RBAC<a class="headerlink" href="#rbac" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ServiceAccount</strong> - Dedicated <code>jenkins</code> service account</li>
+<li><strong>ClusterRole</strong> - Scoped permissions for pod/secret management</li>
+<li><strong>Namespace isolation</strong> - Jenkins runs in dedicated namespace</li>
+</ul>
+<h3 id="secrets-management">Secrets Management<a class="headerlink" href="#secrets-management" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create secret for credentials</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>github-token<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--from-literal<span class="o">=</span><span class="nv">token</span><span class="o">=</span><span class="s1">&#39;ghp_xxxxxxxxxxxx&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>jenkins
+
+<span class="c1"># Reference in pipeline</span>
+withCredentials<span class="o">([</span>string<span class="o">(</span>credentialsId:<span class="w"> </span><span class="s1">&#39;github-token&#39;</span>,<span class="w"> </span>variable:<span class="w"> </span><span class="s1">&#39;TOKEN&#39;</span><span class="o">)])</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span>sh<span class="w"> </span><span class="s1">&#39;echo $TOKEN&#39;</span>
+<span class="o">}</span>
+</code></pre></div>
+<h2 id="best-practices">🎯 Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="pipeline-design">Pipeline Design<a class="headerlink" href="#pipeline-design" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Use Kubernetes agents</strong> - Don't run jobs on controller (numExecutors: 0)<br />
+✅ <strong>Container per tool</strong> - Separate containers for Terraform, Ansible, etc.<br />
+✅ <strong>Resource limits</strong> - Set CPU/memory limits on agents<br />
+✅ <strong>Clean workspace</strong> - Use <code>cleanWs()</code> in post-always<br />
+✅ <strong>Timeout stages</strong> - Prevent hung jobs<br />
+✅ <strong>Parallel stages</strong> - Speed up pipeline with parallel execution</p>
+<h3 id="configuration_1">Configuration<a class="headerlink" href="#configuration_1" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Use JCasC</strong> - Configuration as Code in version control<br />
+✅ <strong>Persistent storage</strong> - PVC for jenkins_home<br />
+✅ <strong>Health checks</strong> - Liveness and readiness probes<br />
+✅ <strong>GitOps</strong> - Manage Jenkins deployment via ArgoCD<br />
+✅ <strong>Immutable tags</strong> - Pin container image versions</p>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Scan dependencies</strong> - Trivy/Checkov in pipeline<br />
+✅ <strong>RBAC</strong> - Minimal permissions for ServiceAccount<br />
+✅ <strong>Secrets</strong> - Use Kubernetes secrets, not hardcoded values<br />
+✅ <strong>Network policies</strong> - Restrict pod-to-pod communication (optional)<br />
+✅ <strong>Audit logs</strong> - Enable Jenkins audit trail plugin</p>
+<h2 id="troubleshooting">🛠️ Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="jenkins-pod-not-starting">Jenkins Pod Not Starting<a class="headerlink" href="#jenkins-pod-not-starting" title="Permanent link">&para;</a></h3>
+<p><strong>Check pod status</strong>:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>jenkins<span class="w"> </span>&lt;pod-name&gt;
+kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </span>jenkins<span class="w"> </span>&lt;pod-name&gt;
+</code></pre></div>
+<p><strong>Common issues</strong>:</p>
+<ul>
+<li>PVC not bound → Check storage class exists</li>
+<li>Resource limits too low → Increase CPU/RAM</li>
+<li>Image pull errors → Check image availability</li>
+</ul>
+<h3 id="agents-not-spawning">Agents Not Spawning<a class="headerlink" href="#agents-not-spawning" title="Permanent link">&para;</a></h3>
+<p><strong>Check</strong>:</p>
+<ol>
+<li>ServiceAccount has correct RBAC → <code>kubectl describe clusterrole jenkins</code></li>
+<li>Kubernetes plugin configured → JCasC in ConfigMap</li>
+<li>Jenkins URL accessible → <code>http://jenkins:8080</code> from pods</li>
+<li>JNLP port open → Service exposes port 50000</li>
+</ol>
+<p><strong>Debug</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check plugin configuration</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>jenkins<span class="w"> </span>&lt;jenkins-pod&gt;<span class="w"> </span>--<span class="w"> </span>cat<span class="w"> </span>/var/jenkins_config/jenkins.yaml
+
+<span class="c1"># Test connectivity</span>
+kubectl<span class="w"> </span>run<span class="w"> </span>test-pod<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--image<span class="o">=</span>busybox<span class="w"> </span>--<span class="w"> </span>wget<span class="w"> </span>-O-<span class="w"> </span>http://jenkins:8080
+</code></pre></div>
+<h3 id="ui-not-accessible">UI Not Accessible<a class="headerlink" href="#ui-not-accessible" title="Permanent link">&para;</a></h3>
+<p><strong>Port forward as alternative</strong>:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>port-forward<span class="w"> </span>-n<span class="w"> </span>jenkins<span class="w"> </span>svc/jenkins<span class="w"> </span><span class="m">8080</span>:8080
+<span class="c1"># Access at http://localhost:8080</span>
+</code></pre></div>
+<p><strong>Check NodePort</strong>:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>jenkins<span class="w"> </span>-n<span class="w"> </span>jenkins
+<span class="c1"># Verify nodePort is 30808</span>
+</code></pre></div>
+<h3 id="pipeline-fails-with-permission-denied">Pipeline Fails with Permission Denied<a class="headerlink" href="#pipeline-fails-with-permission-denied" title="Permanent link">&para;</a></h3>
+<p><strong>Increase RBAC permissions</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Edit ClusterRole</span>
+kubectl<span class="w"> </span>edit<span class="w"> </span>clusterrole<span class="w"> </span>jenkins
+
+<span class="c1"># Add additional resource permissions as needed</span>
+</code></pre></div>
+<h2 id="scaling-performance">📈 Scaling &amp; Performance<a class="headerlink" href="#scaling-performance" title="Permanent link">&para;</a></h2>
+<h3 id="horizontal-scaling">Horizontal Scaling<a class="headerlink" href="#horizontal-scaling" title="Permanent link">&para;</a></h3>
+<p>❌ <strong>Don't scale Jenkins controller replicas</strong> (stateful)<br />
+✅ <strong>Scale agents</strong> by increasing <code>containerCapStr</code> in JCasC</p>
+<h3 id="vertical-scaling">Vertical Scaling<a class="headerlink" href="#vertical-scaling" title="Permanent link">&para;</a></h3>
+<p>Increase controller resources in deployment:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000m</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span>
+<span class="w">  </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000m</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6Gi</span>
+</code></pre></div>
+<h3 id="performance-tuning">Performance Tuning<a class="headerlink" href="#performance-tuning" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Increase agent capacity</strong> - Raise <code>containerCapStr</code> to 20+</li>
+<li><strong>Use node selectors</strong> - Pin agents to specific nodes</li>
+<li><strong>Enable caching</strong> - Cache dependencies between builds</li>
+<li><strong>Optimize pipelines</strong> - Parallel stages, skip unnecessary steps</li>
+</ul>
+<h2 id="skills-demonstrated">🎓 Skills Demonstrated<a class="headerlink" href="#skills-demonstrated" title="Permanent link">&para;</a></h2>
+<ul>
+<li>✅ <strong>Jenkins on Kubernetes</strong> - Cloud-native CI/CD platform</li>
+<li>✅ <strong>Dynamic Agent Provisioning</strong> - Kubernetes plugin with pod templates</li>
+<li>✅ <strong>Configuration as Code</strong> - JCasC for reproducible setup</li>
+<li>✅ <strong>Declarative Pipelines</strong> - Groovy-based Jenkinsfile</li>
+<li>✅ <strong>Multi-stage CI/CD</strong> - Validate → Test → Scan → Deploy</li>
+<li>✅ <strong>Container-based Jobs</strong> - Specialized containers per stage</li>
+<li>✅ <strong>Security Integration</strong> - Trivy scanning in pipeline</li>
+<li>✅ <strong>GitOps Workflow</strong> - ArgoCD managing Jenkins deployment</li>
+<li>✅ <strong>RBAC</strong> - Kubernetes service account and role bindings</li>
+<li>✅ <strong>Persistent Storage</strong> - PVC for stateful data</li>
+</ul>
+<h2 id="references">📚 References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.jenkins.io/doc/book/installing/kubernetes/">Jenkins on Kubernetes</a></li>
+<li><a href="https://plugins.jenkins.io/kubernetes/">Kubernetes Plugin Documentation</a></li>
+<li><a href="https://www.jenkins.io/projects/jcasc/">Jenkins Configuration as Code</a></li>
+<li><a href="https://www.jenkins.io/doc/book/pipeline/syntax/">Pipeline Syntax Reference</a></li>
+<li><a href="https://www.jenkins.io/doc/book/pipeline/">Declarative Pipeline</a></li>
+</ul>
+<hr />
+<p>Built by <a href="https://www.linkedin.com/in/stephon-skipper/">Stephon Skipper</a> | <a href="https://github.com/iso-st3ph/homelab-devops">GitHub</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../gitops/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GitOps (ArgoCD)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                GitOps (ArgoCD)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Docker / Reverse Proxy">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Docker / Reverse Proxy
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer", "navigation.tracking", "toc.integrate", "content.code.copy", "content.action.edit", "search.suggest", "search.highlight", "tabs", "diagrams"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../assets/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
