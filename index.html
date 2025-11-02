@@ -690,17 +690,16 @@ Built with <strong>Terraform · Ansible · Docker · Prometheus · Grafana · Gi
   M --&gt;|Metrics| K[Prometheus + Grafana]</code></pre>
 <h2 id="projects">📁 Projects<a class="headerlink" href="#projects" title="Permanent link">&para;</a></h2>
 <ul>
-<li>🏗️ <a href="terraform/">Terraform Infrastructure</a> - Multi-environment AWS provisioning (dev/staging/prod)</li>
+<li>🏗️ <a href="terraform/">Terraform Infrastructure</a> - Multi-environment AWS provisioning with testing</li>
 <li>🤖 <a href="ansible/">Ansible Automation</a> - Configuration management with Vault secrets</li>
-<li>☸️ <strong>Kubernetes (K3s)</strong> - Production monitoring stack on Kubernetes cluster</li>
-<li>📊 <a href="monitoring/">Monitoring Stack</a> - Prometheus + Grafana + AlertManager with Slack alerts</li>
+<li>☸️ <a href="kubernetes/">Kubernetes (K3s)</a> - Production monitoring stack on K8s cluster</li>
+<li>🔄 <a href="gitops/">GitOps (ArgoCD)</a> - Declarative deployment with auto-sync and self-heal</li>
+<li>🚀 <a href="jenkins/">Jenkins CI/CD</a> - Kubernetes-based with dynamic agent provisioning</li>
+<li>📦 <a href="packer/">Packer Images</a> - Automated AMI builds with security hardening</li>
+<li>📊 <a href="monitoring/">Monitoring Stack</a> - Prometheus + Grafana + Loki + Tempo + AlertManager</li>
 <li>📈 <a href="grafana-dashboards/">Grafana Dashboards</a> - 4 production dashboards auto-provisioned</li>
 <li>🔒 <a href="security/">Security Scanning</a> - Trivy container vulnerability scanning</li>
 <li>🐳 <a href="docker/">Docker / Reverse Proxy</a> - Containerized services with Nginx</li>
-<li>🔐 <strong>Secrets Management</strong> - Ansible Vault encryption for credentials</li>
-<li>🌍 <strong>Multi-Environment</strong> - Terraform workspaces for dev/staging/prod</li>
-<li>🚨 <strong>Production Alerting</strong> - 15+ alert rules with runbooks</li>
-<li>💾 <strong>Backup &amp; DR</strong> - Automated backup/restore scripts</li>
 </ul>
 <hr />
 <h2 id="about-this-lab">🎯 About This Lab<a class="headerlink" href="#about-this-lab" title="Permanent link">&para;</a></h2>
@@ -709,6 +708,9 @@ Built with <strong>Terraform · Ansible · Docker · Prometheus · Grafana · Gi
 ✅ Infrastructure as Code (Terraform with multi-environment)<br />
 ✅ Configuration management (Ansible with encrypted secrets)<br />
 ✅ Kubernetes orchestration (K3s with production workloads)<br />
+✅ GitOps deployment (ArgoCD managing 2 applications)<br />
+✅ CI/CD pipelines (Jenkins on K8s with dynamic agents)<br />
+✅ Immutable infrastructure (Packer AMI builds with hardening)<br />
 ✅ Full observability stack (Metrics + Logs + Traces)<br />
 ✅ Production alerting with Slack integration<br />
 ✅ Container security scanning (Trivy in CI/CD)<br />
@@ -716,7 +718,7 @@ Built with <strong>Terraform · Ansible · Docker · Prometheus · Grafana · Gi
 ✅ Centralized logging (Loki + Promtail, 30-day retention)<br />
 ✅ Distributed tracing (Tempo with trace correlation)<br />
 ✅ Docker containerization with reverse proxy<br />
-✅ Security hardening (SELinux, systemd, Ansible Vault)<br />
+✅ Security hardening (SSH, firewall, IDS, antivirus)<br />
 ✅ Automated testing &amp; validation<br />
 ✅ Disaster recovery (backup/restore automation)</p>
 <blockquote>
@@ -758,7 +760,19 @@ terraform<span class="w"> </span>init<span class="w"> </span><span class="o">&am
 </tr>
 <tr>
 <td><strong>Orchestration</strong></td>
-<td>Kubernetes (K3s)</td>
+<td>Kubernetes (K3s), Docker Compose</td>
+</tr>
+<tr>
+<td><strong>GitOps</strong></td>
+<td>ArgoCD (declarative deployment, auto-sync)</td>
+</tr>
+<tr>
+<td><strong>CI/CD</strong></td>
+<td>Jenkins (K8s dynamic agents), GitHub Actions</td>
+</tr>
+<tr>
+<td><strong>Image Automation</strong></td>
+<td>Packer (hardened AMI builds)</td>
 </tr>
 <tr>
 <td><strong>Monitoring</strong></td>
