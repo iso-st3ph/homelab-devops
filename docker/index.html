@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#docker-containerization" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -335,6 +340,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Docker / Reverse Proxy
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -347,6 +367,304 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐳 Monitoring Stack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐳 Monitoring Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Points
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stack-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Stack Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-highlights" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configuration Highlights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configuration Highlights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prometheus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loki" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loki
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tempo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tempo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Deployment Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Deployment Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Checks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Security Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Isolation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selinux-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      SELinux Compatibility
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Observability Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Observability Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unified-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unified Correlation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-wont-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Won't Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana-cant-connect-to-datasources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana Can't Connect to Datasources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-memory-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Memory Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Additional Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Related Pages
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -464,9 +782,282 @@
   
 
 
-  <h1>Docker / Reverse Proxy</h1>
+<h1 id="docker-containerization">Docker &amp; Containerization<a class="headerlink" href="#docker-containerization" title="Permanent link">&para;</a></h1>
+<p>This homelab uses <strong>Docker</strong> and <strong>Docker Compose</strong> for containerized service orchestration.</p>
+<hr />
+<h2 id="monitoring-stack">🐳 Monitoring Stack<a class="headerlink" href="#monitoring-stack" title="Permanent link">&para;</a></h2>
+<p>The primary Docker deployment is the <strong>full observability stack</strong> running in <code>docker/monitoring-stack/</code>:</p>
+<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Image</th>
+<th>Port</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prometheus</strong></td>
+<td><code>prom/prometheus:latest</code></td>
+<td>9090</td>
+<td>Metrics collection &amp; storage (15-day retention)</td>
+</tr>
+<tr>
+<td><strong>Grafana</strong></td>
+<td><code>grafana/grafana:latest</code></td>
+<td>3001</td>
+<td>Visualization &amp; dashboards</td>
+</tr>
+<tr>
+<td><strong>AlertManager</strong></td>
+<td><code>prom/alertmanager:latest</code></td>
+<td>9093</td>
+<td>Alert routing &amp; notification</td>
+</tr>
+<tr>
+<td><strong>Loki</strong></td>
+<td><code>grafana/loki:latest</code></td>
+<td>3100</td>
+<td>Log aggregation &amp; storage (30-day retention)</td>
+</tr>
+<tr>
+<td><strong>Promtail</strong></td>
+<td><code>grafana/promtail:latest</code></td>
+<td>-</td>
+<td>Log collection from Docker containers</td>
+</tr>
+<tr>
+<td><strong>Tempo</strong></td>
+<td><code>grafana/tempo:latest</code></td>
+<td>3200</td>
+<td>Distributed tracing (30-day retention)</td>
+</tr>
+<tr>
+<td><strong>Node Exporter</strong></td>
+<td><code>prom/node-exporter:latest</code></td>
+<td>9100</td>
+<td>Host system metrics</td>
+</tr>
+<tr>
+<td><strong>cAdvisor</strong></td>
+<td><code>gcr.io/cadvisor/cadvisor:latest</code></td>
+<td>8080</td>
+<td>Container metrics</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Start the entire monitoring stack</span>
+make<span class="w"> </span>mon-up
 
+<span class="c1"># View logs</span>
+make<span class="w"> </span>mon-logs
 
+<span class="c1"># Stop the stack</span>
+make<span class="w"> </span>mon-down
+
+<span class="c1"># Restart a specific service</span>
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker/monitoring-stack/docker-compose.yml<span class="w"> </span>restart<span class="w"> </span>grafana
+</code></pre></div>
+<h3 id="access-points">Access Points<a class="headerlink" href="#access-points" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Grafana</strong>: <a href="http://localhost:3001">http://localhost:3001</a> (admin / changeme-please)</li>
+<li><strong>Prometheus</strong>: <a href="http://localhost:9090">http://localhost:9090</a></li>
+<li><strong>AlertManager</strong>: <a href="http://localhost:9093">http://localhost:9093</a></li>
+<li><strong>Loki</strong>: <a href="http://localhost:3100">http://localhost:3100</a></li>
+<li><strong>Tempo</strong>: <a href="http://localhost:3200">http://localhost:3200</a></li>
+<li><strong>cAdvisor</strong>: <a href="http://localhost:8080">http://localhost:8080</a></li>
+</ul>
+<hr />
+<h2 id="stack-structure">📁 Stack Structure<a class="headerlink" href="#stack-structure" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>docker/monitoring-stack/
+├── docker-compose.yml              # Service orchestration
+├── prometheus/
+│   ├── prometheus.yml              # Scrape configs
+│   └── rules/                      # Alert rules
+│       ├── node_alerts.yml
+│       ├── container_alerts.yml
+│       └── service_alerts.yml
+├── alertmanager/
+│   └── alertmanager.yml            # Slack integration
+├── grafana/
+│   └── provisioning/
+│       ├── datasources/            # Auto-provisioned datasources
+│       │   ├── prometheus.yml
+│       │   ├── loki.yml
+│       │   └── tempo.yml
+│       └── dashboards/             # Auto-provisioned dashboards
+│           ├── dashboards.yml
+│           └── json/
+│               ├── dashboard-1860.json    # Node Exporter Full
+│               ├── dashboard-179.json     # Docker &amp; System
+│               ├── dashboard-893.json     # cAdvisor
+│               └── dashboard-15172.json   # Node Quickstart
+├── loki/
+│   └── loki-config.yaml            # Log storage config
+├── promtail/
+│   └── promtail-config.yaml        # Log collection config
+└── tempo/
+    └── tempo-config.yaml           # Trace storage config
+</code></pre></div>
+<hr />
+<h2 id="configuration-highlights">🔧 Configuration Highlights<a class="headerlink" href="#configuration-highlights" title="Permanent link">&para;</a></h2>
+<h3 id="prometheus">Prometheus<a class="headerlink" href="#prometheus" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Retention</strong>: 15 days</li>
+<li><strong>Scrape Interval</strong>: 15 seconds</li>
+<li><strong>Targets</strong>: Node Exporter, cAdvisor, Prometheus self-monitoring</li>
+<li><strong>Alert Rules</strong>: CPU, memory, disk, service availability</li>
+<li><strong>Remote Write</strong>: Tempo metrics generator</li>
+</ul>
+<h3 id="loki">Loki<a class="headerlink" href="#loki" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Retention</strong>: 30 days (720 hours)</li>
+<li><strong>Storage</strong>: Local filesystem with compaction</li>
+<li><strong>Schema</strong>: TSDB with v13 schema</li>
+<li><strong>Log Sources</strong>: Docker containers (via Promtail)</li>
+</ul>
+<h3 id="tempo">Tempo<a class="headerlink" href="#tempo" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Retention</strong>: 30 days (720 hours)</li>
+<li><strong>Receivers</strong>: OTLP gRPC (4317), OTLP HTTP (4318)</li>
+<li><strong>Storage</strong>: Local filesystem</li>
+<li><strong>Features</strong>: Service graphs, span metrics, trace correlation</li>
+</ul>
+<h3 id="grafana">Grafana<a class="headerlink" href="#grafana" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Datasources</strong>: Auto-provisioned (Prometheus, Loki, Tempo)</li>
+<li><strong>Dashboards</strong>: 4 pre-built dashboards auto-imported</li>
+<li><strong>Theme</strong>: Dark mode by default</li>
+<li><strong>Features</strong>: Explore, Alerting, Unified Search</li>
+</ul>
+<hr />
+<h2 id="deployment-best-practices">🚀 Deployment Best Practices<a class="headerlink" href="#deployment-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<p>Create <code>.env</code> file in <code>docker/monitoring-stack/</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">GRAFANA_PORT</span><span class="o">=</span><span class="m">3001</span>
+<span class="nv">PROMETHEUS_PORT</span><span class="o">=</span><span class="m">9090</span>
+<span class="nv">ALERTMANAGER_PORT</span><span class="o">=</span><span class="m">9093</span>
+<span class="nv">LOKI_PORT</span><span class="o">=</span><span class="m">3100</span>
+<span class="nv">TEMPO_PORT</span><span class="o">=</span><span class="m">3200</span>
+<span class="nv">CADVISOR_PORT</span><span class="o">=</span><span class="m">8080</span>
+
+<span class="nv">GF_SECURITY_ADMIN_USER</span><span class="o">=</span>admin
+<span class="nv">GF_SECURITY_ADMIN_PASSWORD</span><span class="o">=</span>your-secure-password-here
+</code></pre></div>
+<h3 id="volume-management">Volume Management<a class="headerlink" href="#volume-management" title="Permanent link">&para;</a></h3>
+<p>All data is persisted in Docker volumes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># List monitoring volumes</span>
+docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>monitoring-stack
+
+<span class="c1"># Backup Grafana data</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>monitoring-stack_grafana_data:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/backups:/backup<span class="w"> </span>ubuntu<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/grafana-<span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span>.tar.gz<span class="w"> </span>/data
+
+<span class="c1"># Restore Grafana data</span>
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>monitoring-stack_grafana_data:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/backups:/backup<span class="w"> </span>ubuntu<span class="w"> </span>tar<span class="w"> </span>xzf<span class="w"> </span>/backup/grafana-2024-11-02.tar.gz<span class="w"> </span>-C<span class="w"> </span>/
+</code></pre></div>
+<h3 id="health-checks">Health Checks<a class="headerlink" href="#health-checks" title="Permanent link">&para;</a></h3>
+<p>Verify all services are healthy:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check container status</span>
+docker<span class="w"> </span>ps<span class="w"> </span>--filter<span class="w"> </span><span class="s2">&quot;name=mon-&quot;</span><span class="w"> </span>--format<span class="w"> </span><span class="s2">&quot;table {{.Names}}\t{{.Status}}&quot;</span>
+
+<span class="c1"># Test endpoints</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:9090/-/healthy<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; ✓ Prometheus&quot;</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:3001/api/health<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; ✓ Grafana&quot;</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:3100/ready<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; ✓ Loki&quot;</span>
+curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:3200/ready<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot; ✓ Tempo&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="security-considerations">🔒 Security Considerations<a class="headerlink" href="#security-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="network-isolation">Network Isolation<a class="headerlink" href="#network-isolation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Services communicate via internal <code>monitoring</code> network</li>
+<li>Only necessary ports exposed to host</li>
+<li>No external internet access required for core functionality</li>
+</ul>
+<h3 id="secrets-management">Secrets Management<a class="headerlink" href="#secrets-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Grafana admin credentials in <code>.env</code> file (gitignored)</li>
+<li>AlertManager Slack webhook in <code>alertmanager.yml</code> (can use Ansible Vault)</li>
+<li>Use strong passwords in production</li>
+</ul>
+<h3 id="selinux-compatibility">SELinux Compatibility<a class="headerlink" href="#selinux-compatibility" title="Permanent link">&para;</a></h3>
+<p>All volume mounts use <code>:z</code> flag for SELinux compatibility on Fedora/RHEL:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro,z</span>
+</code></pre></div>
+<hr />
+<h2 id="observability-features">📊 Observability Features<a class="headerlink" href="#observability-features" title="Permanent link">&para;</a></h2>
+<h3 id="unified-correlation">Unified Correlation<a class="headerlink" href="#unified-correlation" title="Permanent link">&para;</a></h3>
+<p>The stack provides <strong>3 pillars of observability</strong> with full correlation:</p>
+<ol>
+<li><strong>Metrics</strong> (Prometheus) → View in Grafana dashboards</li>
+<li><strong>Logs</strong> (Loki) → Click trace ID in logs → Jump to Tempo</li>
+<li><strong>Traces</strong> (Tempo) → Click log link in trace → Jump to Loki</li>
+</ol>
+<h3 id="example-workflow">Example Workflow<a class="headerlink" href="#example-workflow" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Alert fires</strong> → AlertManager sends Slack notification</li>
+<li><strong>View dashboard</strong> → Grafana shows metric spike</li>
+<li><strong>Check logs</strong> → Loki shows error messages with trace IDs</li>
+<li><strong>Trace request</strong> → Tempo shows distributed trace across services</li>
+<li><strong>Correlate</strong> → Jump between metrics/logs/traces seamlessly</li>
+</ol>
+<hr />
+<h2 id="troubleshooting">🛠️ Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="service-wont-start">Service Won't Start<a class="headerlink" href="#service-wont-start" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check logs</span>
+docker<span class="w"> </span>logs<span class="w"> </span>mon-&lt;service-name&gt;
+
+<span class="c1"># Common issues:</span>
+<span class="c1"># 1. Port already in use</span>
+sudo<span class="w"> </span>lsof<span class="w"> </span>-i<span class="w"> </span>:9090<span class="w">  </span><span class="c1"># Check if port is taken</span>
+
+<span class="c1"># 2. Permission denied (SELinux)</span>
+sudo<span class="w"> </span>ausearch<span class="w"> </span>-m<span class="w"> </span>avc<span class="w"> </span>-ts<span class="w"> </span>recent<span class="w">  </span><span class="c1"># Check SELinux denials</span>
+
+<span class="c1"># 3. Config syntax error</span>
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker/monitoring-stack/docker-compose.yml<span class="w"> </span>config
+</code></pre></div>
+<h3 id="grafana-cant-connect-to-datasources">Grafana Can't Connect to Datasources<a class="headerlink" href="#grafana-cant-connect-to-datasources" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check network connectivity</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mon-grafana<span class="w"> </span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>prometheus
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mon-grafana<span class="w"> </span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>loki
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>mon-grafana<span class="w"> </span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>tempo
+
+<span class="c1"># Verify datasource configs</span>
+ls<span class="w"> </span>-la<span class="w"> </span>docker/monitoring-stack/grafana/provisioning/datasources/
+</code></pre></div>
+<h3 id="high-memory-usage">High Memory Usage<a class="headerlink" href="#high-memory-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check resource usage</span>
+docker<span class="w"> </span>stats<span class="w"> </span>--no-stream
+
+<span class="c1"># Reduce retention periods in configs:</span>
+<span class="c1"># - Prometheus: storage.tsdb.retention.time</span>
+<span class="c1"># - Loki: limits_config.retention_period</span>
+<span class="c1"># - Tempo: compactor.compaction.block_retention</span>
+</code></pre></div>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://prometheus.io/docs/">Prometheus Documentation</a></li>
+<li><a href="https://grafana.com/docs/grafana/latest/">Grafana Documentation</a></li>
+<li><a href="https://grafana.com/docs/loki/latest/">Loki Documentation</a></li>
+<li><a href="https://grafana.com/docs/tempo/latest/">Tempo Documentation</a></li>
+<li><a href="https://docs.docker.com/compose/">Docker Compose Documentation</a></li>
+</ul>
+<hr />
+<h2 id="related-pages">🔗 Related Pages<a class="headerlink" href="#related-pages" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../monitoring/">Monitoring &amp; Observability</a> - Alert rules and runbooks</li>
+<li><a href="../grafana-dashboards/">Grafana Dashboards</a> - Dashboard details and customization</li>
+<li><a href="../security/">Security Scanning</a> - Trivy container vulnerability scanning</li>
+<li><a href="../architecture/">Architecture</a> - System architecture diagrams</li>
+</ul>
 
 
 
