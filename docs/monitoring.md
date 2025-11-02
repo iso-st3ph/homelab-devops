@@ -307,11 +307,12 @@ python3 ../scripts/generate_prometheus_targets.py inventories/hosts
 ```
 
 This installs node_exporter as a systemd service with:
+
 - ✅ Automatic firewall configuration
 - ✅ Security hardening
 - ✅ Health check verification
 
-See [Ansible monitoring role](../ansible/roles/monitoring/README.md) for details.
+See the [monitoring role on GitHub](https://github.com/iso-st3ph/homelab-devops/tree/main/ansible/roles/monitoring) for details.
 
 ## References
 

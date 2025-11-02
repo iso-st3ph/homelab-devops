@@ -144,7 +144,7 @@ scrape_configs:
           environment: 'homelab'
 ```
 
-See [monitoring role documentation](../ansible/roles/monitoring/README.md) for details.
+See the [monitoring role on GitHub](https://github.com/iso-st3ph/homelab-devops/tree/main/ansible/roles/monitoring) for complete documentation.
 
 ---
 

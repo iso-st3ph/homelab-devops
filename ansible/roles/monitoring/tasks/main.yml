@@ -30,6 +30,7 @@
 
 - name: Download and install node_exporter
   when: not node_exporter_binary.stat.exists or node_exporter_version not in installed_version.stdout | default('')
+  become: true
   block:
     - name: Create temporary download directory
       ansible.builtin.tempfile:
@@ -44,7 +45,6 @@
           node_exporter-{{ node_exporter_version }}.{{ node_exporter_arch }}.tar.gz
         dest: "{{ temp_dir.path }}/node_exporter.tar.gz"
         mode: '0644'
-      become: true
 
     - name: Extract node_exporter archive
       ansible.builtin.unarchive:
@@ -52,7 +52,6 @@
         dest: "{{ temp_dir.path }}"
         remote_src: true
         creates: "{{ temp_dir.path }}/node_exporter-{{ node_exporter_version }}.{{ node_exporter_arch }}/node_exporter"
-      become: true
 
     - name: Copy node_exporter binary to bin path
       ansible.builtin.copy:
@@ -62,14 +61,12 @@
         owner: root
         group: root
         remote_src: true
-      become: true
       notify: Restart node_exporter
 
     - name: Clean up temporary directory
       ansible.builtin.file:
         path: "{{ temp_dir.path }}"
         state: absent
-      become: true
 
 - name: Install node_exporter systemd service
   ansible.builtin.template:
