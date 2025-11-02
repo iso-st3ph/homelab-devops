@@ -45,3 +45,51 @@ jobs:
       - name: Validate monitoring docker-compose
         run: |
           docker compose -f docker/monitoring-stack/docker-compose.yml config >/dev/null
+
+  security_scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner - Prometheus
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'prom/prometheus:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Run Trivy vulnerability scanner - Grafana
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'grafana/grafana:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Run Trivy vulnerability scanner - AlertManager
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'prom/alertmanager:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Run Trivy vulnerability scanner - Node Exporter
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'prom/node-exporter:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Run Trivy vulnerability scanner - cAdvisor
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'gcr.io/cadvisor/cadvisor:latest'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
