@@ -21,6 +21,14 @@ mon-down:  ## Stop monitoring stack
 mon-logs:  ## View monitoring stack logs
 	cd docker/monitoring-stack && docker compose logs -f
 
-security-scan:  ## Run Trivy security scan on all Docker images
-	@echo "=== Scanning Docker images for vulnerabilities ===" && \
+# Security
+.PHONY: security-scan
+security-scan:
+	@echo "Running Trivy security scan..."
 	./scripts/trivy-scan.sh
+
+# Grafana Dashboards
+.PHONY: grafana-dashboards
+grafana-dashboards:
+	@echo "Importing Grafana dashboards..."
+	./scripts/import-grafana-dashboards.sh

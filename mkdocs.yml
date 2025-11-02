@@ -56,5 +56,6 @@ nav:
   - Ansible: ansible.md
   - Docker / Reverse Proxy: docker.md
   - Monitoring: monitoring.md
+  - Grafana Dashboards: grafana-dashboards.md
   - Security Scanning: security.md
   - Hire Me: hire-me.md
