@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/README-site-notes/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/README-site-notes/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/ansible/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/ansible/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/architecture/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/architecture/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/docker/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/docker/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/gitops/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/gitops/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/grafana-dashboards/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/grafana-dashboards/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/hire-me/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/hire-me/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/jenkins/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/jenkins/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/kubernetes/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/kubernetes/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/monitoring/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/monitoring/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/packer/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/packer/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/pipelines/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/pipelines/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/projects/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/projects/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/reverse-proxy/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/reverse-proxy/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/security/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/security/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
     <url>
-         <loc>https://iso-st3ph.github.io/homelab-devops/terraform/</loc>
-         <lastmod>2025-11-02</lastmod>
+         <loc>https://devops.ayoskip.info/terraform/</loc>
+         <lastmod>2025-11-03</lastmod>
     </url>
 </urlset>
