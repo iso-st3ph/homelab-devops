@@ -2,12 +2,12 @@
 
 [![CI](https://github.com/iso-st3ph/homelab-devops/actions/workflows/ci.yml/badge.svg)](https://github.com/iso-st3ph/homelab-devops/actions/workflows/ci.yml)
 [![Infra Lint](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/iso-st3ph/homelab-devops/actions/workflows/infra-ci.yml)
-[![Docs](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml/badge.svg)](https://iso-st3ph.github.io/homelab-devops/)
+[![Docs](https://github.com/iso-st3ph/homelab-devops/actions/workflows/docs.yml/badge.svg)](https://devops.ayoskip.info/)
 ![Terraform](https://img.shields.io/badge/Terraform-validated-blueviolet?logo=terraform)
 ![Ansible](https://img.shields.io/badge/Ansible-tested-darkred?logo=ansible)
 ![Docker](https://img.shields.io/badge/Docker-ready-blue?logo=docker)
 
-**Live Documentation:** https://iso-st3ph.github.io/homelab-devops/
+**Live Documentation:** <https://devops.ayoskip.info/>
 
 A production-ready DevOps portfolio showcasing **infrastructure automation, monitoring, and orchestration** in a real homelab environment.  
 Built with **Ansible, Terraform, Docker, Prometheus, and GitHub Actions** — the same tools used in enterprise DevOps.
@@ -339,7 +339,7 @@ docker compose -f docker/monitoring-stack/docker-compose.yml config
 
 ## 📚 Documentation
 
-Comprehensive documentation is available at **https://iso-st3ph.github.io/homelab-devops/**
+Comprehensive documentation is available at **<https://devops.ayoskip.info/>**
 
 Topics covered:
 - Architecture overview
@@ -486,9 +486,9 @@ All Phase 3 tasks successfully implemented:
 **Stephon Skipper**  
 DevOps Engineer | Infrastructure Automation | Cloud & Homelab Enthusiast
 
-- 🌐 Website: https://ayoskip.info
-- 💼 LinkedIn: https://www.linkedin.com/in/stephon-skipper/
-- 📂 Portfolio: https://iso-st3ph.github.io/homelab-devops/
+- 🌐 Website: <https://ayoskip.info>
+- 💼 LinkedIn: <https://www.linkedin.com/in/stephon-skipper/>
+- 📂 Portfolio: <https://devops.ayoskip.info/>
 
 ---
 
@@ -573,8 +573,8 @@ ansible-playbook playbooks/patch.yml --check --diff -K
 ## 🤝 Contributing / Contact
 Questions or ideas? Open an Issue or reach out:
 
-- **LinkedIn:** https://www.linkedin.com/in/stephon-skipper/
-- **Site:** https://ayoskip.info
+- **LinkedIn:** <https://www.linkedin.com/in/stephon-skipper/>
+- **Site:** <https://ayoskip.info>
 
 If this repo helped you, ⭐ it and follow along as I add Jenkins, Packer, Grafana/Prometheus, and Proxmox automation.
 
