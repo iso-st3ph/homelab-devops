@@ -1,85 +1,28 @@
 # Container Security Scanning with Trivy
 
-This repository uses [Trivy](https://github.com/aquasecurity/trivy) to scan Docker images for security vulnerabilities as part of the CI/CD pipeline.
+# Security
 
-## What is Trivy?
+IsoVault is built for privacy and security from the ground up.
 
-Trivy is a comprehensive security scanner for:
-- Container images (Docker, OCI)
-- Filesystems and Git repositories
-- Vulnerabilities (CVE database)
-- Misconfigurations (Kubernetes, Docker, Terraform)
-- Secrets and sensitive information
+## Encryption
+- All backups are encrypted client-side before transmission.
+- Optionally, use your own encryption keys.
 
-## Scanning Strategy
+## Token Scopes
+- PBS API tokens are scoped to specific namespaces.
+- Least-privilege access by default.
 
-### CI/CD Integration
+## Zero Trust & Firewall
+- Cloudflare Zero Trust restricts access to authorized users/devices.
+- Default firewall rules block all except whitelisted sources.
 
-Every push triggers automatic vulnerability scans in GitHub Actions for:
+## Data Isolation
+- Each backup is stored in a dedicated namespace or datastore.
+- No cross-tenant access; strict separation.
 
-- **Prometheus** (`prom/prometheus:latest`)
-- **Grafana** (`grafana/grafana:latest`)
-- **AlertManager** (`prom/alertmanager:latest`)
-- **Node Exporter** (`prom/node-exporter:latest`)
-- **cAdvisor** (`gcr.io/cadvisor/cadvisor:latest`)
-
-Scans focus on **HIGH** and **CRITICAL** severity vulnerabilities.
-
-### Local Scanning
-
-Run security scans locally before pushing:
-
-```bash
-# Using Makefile
-make security-scan
-
-# Or directly
-./scripts/trivy-scan.sh
-```
-
-## Installation
-
-### Fedora/RHEL
-
-```bash
-sudo dnf install -y trivy
-```
-
-### Ubuntu/Debian
-
-```bash
-# Add repository
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
-
-# Install
-sudo apt-get update
-sudo apt-get install trivy
-```
-
-### macOS
-
-```bash
-brew install trivy
-```
-
-## Usage
-
-### Scan a Single Image
-
-```bash
-# Basic scan
-trivy image grafana/grafana:latest
-
-# Only high and critical vulnerabilities
-trivy image --severity HIGH,CRITICAL grafana/grafana:latest
-
-# Output as JSON
-trivy image --format json --output results.json grafana/grafana:latest
-
-# Scan and exit with error if vulnerabilities found
-trivy image --exit-code 1 --severity CRITICAL grafana/grafana:latest
-```
+## Backup Verification
+- Restore jobs are isolated and logged.
+- Regular integrity checks recommended.
 
 ### Scan Docker Compose Stack
 
