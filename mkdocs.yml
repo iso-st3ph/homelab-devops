@@ -2,33 +2,48 @@ site_name: Iso-St3ph DevOps Portfolio
 site_url: https://devops.ayoskip.info/
 repo_url: https://github.com/iso-st3ph/homelab-devops
 repo_name: iso-st3ph/homelab-devops
-
 theme:
   name: material
+  logo: assets/isovault-logo.svg
+  favicon: assets/isovault-logo.svg
   features:
     - navigation.instant
-    - navigation.footer
+    - navigation.sections
     - navigation.tracking
-    - toc.integrate
     - content.code.copy
     - content.action.edit
-    - search.suggest
-    - search.highlight
-    - tabs
-    - diagrams
   palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
     - scheme: slate
-      primary: indigo
-      accent: cyan
-  icon:
-    repo: fontawesome/brands/github
-
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+extra_css:
+  - styles/overrides.css
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/iso-st3ph
+    - icon: fontawesome/solid/envelope
+      link: mailto:hello@isovault.dev
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
   - assets/mermaid-init.js
-
 plugins:
   - search
+  - minify:
+      minify_html: true
+  - redirects: {}
 
 markdown_extensions:
   - admonition
@@ -36,30 +51,13 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.highlight
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.details
   - pymdownx.tabbed
   - pymdownx.tasklist
   - pymdownx.magiclink
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - Home: index.md
-  - Architecture: architecture.md
-  - Terraform: terraform.md
-  - Ansible: ansible.md
-  - Kubernetes (K3s): kubernetes.md
-  - GitOps (ArgoCD): gitops.md
-  - Jenkins CI/CD: jenkins.md
-  - Packer Images: packer.md
-  - Docker / Reverse Proxy: docker.md
-  - Monitoring: monitoring.md
-  - Grafana Dashboards: grafana-dashboards.md
-  - Security Scanning: security.md
-  - Hire Me: hire-me.md
+  - Getting Started: getting-started/index.md
+  - Pricing: pricing.md
+  - Security: security.md

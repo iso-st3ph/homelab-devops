@@ -11,18 +11,7 @@
 
 ```mermaid
 flowchart TD
-  A[Developer Laptop] -->|Git Push| B[GitHub Actions / Jenkins]
-  B -->|Static Checks| C[pre-commit · TFLint · Checkov · Ansible-lint · Hadolint]
-  B -->|Plan| D[Terraform Plan]
-  D -->|Manual Gate| E[Approve]
-  E -->|Apply| F[Terraform Apply]
-  F -->|Configure| G[Ansible Playbooks]
-  G -->|Deploy/Proxy| H[Docker Reverse Proxy]
-  G -->|Deploy Monitoring| M[Node Exporter]
-  F -->|Alt Target| I[Proxmox VM + NFS]
-  G -->|Smoke Tests| J[Health Checks]
   M -->|Metrics| K[Prometheus + Grafana]
-```
 
 ## 📁 Projects
 
@@ -48,8 +37,50 @@ This homelab demonstrates production-ready DevOps practices:
 ✅ Configuration management (Ansible with encrypted secrets)  
 ✅ Kubernetes orchestration (K3s with production workloads)  
 ✅ GitOps deployment (ArgoCD managing 2 applications)  
-✅ CI/CD pipelines (Jenkins on K8s with dynamic agents)  
 ✅ Immutable infrastructure (Packer AMI builds with hardening)  
+
+---
+title: IsoVault — Private. Encrypted. Yours.
+---
+
+<div class="hero">
+  <img src="assets/isovault-logo.svg" alt="IsoVault Logo" width="120" />
+  
+  # IsoVault
+  ## Private. Encrypted. Yours.
+  
+  <p>Privacy-first offsite backup via Proxmox Backup Server, Cloudflare Tunnel, and Zero Trust. Your data, your control.</p>
+  <div class="cta">
+    <a href="/getting-started/" class="md-button md-button--primary">Get Started</a>
+    <a href="/pricing/" class="md-button">Pricing</a>
+  </div>
+</div>
+
+---
+
+## Why IsoVault
+- **End-to-end encryption**: Your backups are encrypted before leaving your network.
+- **Zero Trust access**: Only authorized users and devices can access your data.
+- **Bring-Your-Own-Storage**: Use your own Proxmox Backup Server, or connect cloud storage.
+
+---
+
+## How it works
+IsoVault combines Proxmox Backup Server (PBS) with Cloudflare Tunnel and Zero Trust to deliver secure, isolated backups. Each backup is stored in a dedicated namespace, protected by firewall rules and scoped tokens.
+
+**Workflow:**
+1. Client encrypts and sends backup to PBS.
+2. Cloudflare Tunnel secures remote access.
+3. Zero Trust policies restrict access to authorized users/devices.
+
+---
+
+## What you get
+- Private by design
+- Simple onboarding
+- Proxmox-native integration
+
+---
 ✅ Full observability stack (Metrics + Logs + Traces)  
 ✅ Production alerting with Slack integration  
 ✅ Container security scanning (Trivy in CI/CD)  

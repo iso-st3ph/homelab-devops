@@ -1,0 +1,20 @@
+:root {
+  --md-primary-fg-color: #0EA5E9;
+  --md-accent-fg-color: #22C55E;
+}
+.hero {
+  margin-top: 2rem;
+  text-align: center;
+}
+.hero .cta {
+  display: inline-flex;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(11,18,32,0.07);
+  padding: 1.5rem;
+  background: #fff;
+  margin-bottom: 1.5rem;
+}
