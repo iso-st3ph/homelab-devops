@@ -2,70 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://devops.ayoskip.info/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/README-site-notes/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/ansible/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/architecture/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/docker/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/gitops/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/grafana-dashboards/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/hire-me/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/jenkins/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/kubernetes/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/monitoring/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/packer/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/pipelines/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
+    </url>
+    <url>
+         <loc>https://devops.ayoskip.info/pricing/</loc>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/projects/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/reverse-proxy/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/security/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
     </url>
     <url>
          <loc>https://devops.ayoskip.info/terraform/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-12</lastmod>
+    </url>
+    <url>
+         <loc>https://devops.ayoskip.info/assets/</loc>
+         <lastmod>2025-11-12</lastmod>
+    </url>
+    <url>
+         <loc>https://devops.ayoskip.info/getting-started/</loc>
+         <lastmod>2025-11-12</lastmod>
     </url>
 </urlset>
